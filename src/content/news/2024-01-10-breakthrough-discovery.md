@@ -5,7 +5,7 @@ image: "/images/kansas-milky-way.jpg"
 summary: "Our team has completed our last domestic campaign to gather data to profile this target of the MBR Explorer mission set to launch March 2028."
 ---
 
-Through a collaboration with Dr. Marc Buie of the Southwest Research Institute (SWRI), who generously provided 12 CPC1100 systems for UVA and local observers, the Occultation Group at UVA organized an 18 telescope deployment in the +/- 3 sigma zone. 
+Through a collaboration with Dr. Marc Buie of the Southwest Research Institute (SwRI), who generously provided 12 CPC1100 systems for UVA and local observers, the Occultation Group at UVA organized an 18 telescope deployment in the +/- 3 sigma zone. 
 
 
 ## Technical Details
