@@ -1,0 +1,309 @@
+---
+import { getCollection } from 'astro:content';
+import '../styles/global.css';
+
+const newsPosts = await getCollection('news');
+const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Latest news and updates from the UVA Occultation Research Group" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>News - Occultation Group at UVA</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header class="header" role="banner">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="site-title">
+            <a href="/" style="color: inherit; text-decoration: none;">Occultation Group at UVA</a>
+          </h1>
+          <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/results">Results</a>
+            <a href="/news" aria-current="page">News</a>
+            <a href="/about">About</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="main" role="main">
+      <div class="container">
+        <header style="text-align: center; margin-bottom: 3rem;">
+          <h1>Latest News</h1>
+          <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+            Stay updated with our latest research findings, announcements, and discoveries in stellar occultation studies.
+          </p>
+        </header>
+        
+        <div class="news-listing">
+          {sortedPosts.length > 0 ? (
+            <div class="news-grid">
+              {sortedPosts.map((post) => (
+                <article class="news-card">
+                  <header class="news-card-header">
+                    <time class="news-date" datetime={post.data.date.toISOString()}>
+                      {post.data.date.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </time>
+                    <h2 class="news-title">
+                      <a href={`/news/${post.slug}/`} class="news-title-link">
+                        {post.data.title}
+                      </a>
+                    </h2>
+                  </header>
+                  
+                  {post.data.image && (
+                    <div class="news-image">
+                      <a href={`/news/${post.slug}/`}>
+                        <img 
+                          src={post.data.image} 
+                          alt={`Image for ${post.data.title}`}
+                          loading="lazy"
+                        />
+                      </a>
+                    </div>
+                  )}
+
+                  {post.data.video && (
+                    <div class="news-video">
+                      <video controls preload="metadata">
+                        <source src={post.data.video} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  )}
+
+                  {post.data.youtube && (
+                    <div class="news-youtube">
+                      <iframe 
+                        src={`https://www.youtube.com/embed/${post.data.youtube}`}
+                        title={`YouTube video for ${post.data.title}`}
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy"
+                      ></iframe>
+                    </div>
+                  )}
+
+                  <div class="news-preview">
+                    {post.data.summary && (
+                      <p class="news-summary">{post.data.summary}</p>
+                    )}
+                    
+                    <div class="news-excerpt">
+                      <p>{post.body.split('\n\n')[0].substring(0, 300)}...</p>
+                    </div>
+                    
+                    <a href={`/news/${post.slug}/`} class="read-more-link">
+                      Read full article →
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state">
+              <p>No news posts available yet. Check back soon for updates!</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2025 Occultation Group at UVA. All rights reserved.</p>
+          <ul class="footer-links">
+            <li><a href="mailto:pvz5hs@virginia.edu">Contact</a></li>
+            <li><a href="https://github.com/occultation-research-group" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="/rss.xml">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .news-listing {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .news-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .news-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--shadow-hover);
+  }
+
+  .news-card-header {
+    margin-bottom: 1rem;
+  }
+
+  .news-date {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .news-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .news-title-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .news-title-link:hover {
+    color: var(--accent-color);
+  }
+
+  .news-image {
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .news-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.2s ease;
+  }
+
+  .news-image:hover img {
+    transform: scale(1.02);
+  }
+
+  .news-video {
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .news-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .news-youtube {
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+
+  .news-youtube iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .news-preview {
+    margin-top: 1rem;
+  }
+
+  .news-summary {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .news-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .read-more-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .read-more-link:hover {
+    color: var(--accent-hover);
+  }
+
+  .read-more-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .news-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .news-card {
+      padding: 1rem;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .news-card {
+      transition: none;
+    }
+    
+    .news-image img {
+      transition: none;
+    }
+  }
+</style>

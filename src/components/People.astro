@@ -1,0 +1,162 @@
+---
+import peopleData from '../data/people.json';
+import observersData from '../data/observers.json';
+
+// Sort observers alphabetically by last name
+const sortedObservers = observersData.observers.sort((a, b) => {
+  // Extract last name (everything after the last space)
+  const lastNameA = a.name.split(' ').pop();
+  const lastNameB = b.name.split(' ').pop();
+  return lastNameA.localeCompare(lastNameB);
+});
+---
+
+<div class="people-section">
+  <section class="executive-section">
+    <h2>Executive & Contact</h2>
+    <ul class="executive-list">
+      {peopleData.executive.map((person) => (
+        <li class="executive-item">
+          <div class="person-info">
+            <strong>{person.name}</strong>
+            <span class="role">{person.role}</span>
+            {person.email && (
+              <a href={`mailto:${person.email}`} class="email-link">
+                {person.email}
+              </a>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="people-section">
+    <h2>Faculty Advisors</h2>
+    <ul class="people-list">
+      {peopleData.people.map((person) => (
+        <li class="person-item">
+          <div class="person-info">
+            <strong>{person.name}</strong>
+            {person.role && <span class="role">{person.role}</span>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="observers-section">
+    <h2>Observers</h2>
+    <ul class="observers-list">
+      {sortedObservers.map((observer) => (
+        <li class="observer-item">
+          <div class="observer-info">
+            <span class="observer-name">{observer.name}</span>
+            {observer.year && <span class="observer-year">{observer.year}</span>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+</div>
+
+<style>
+  .people-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .executive-section,
+  .people-section,
+  .observers-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .executive-list,
+  .people-list,
+  .observers-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .executive-item,
+  .person-item,
+  .observer-item {
+    padding: 0.75rem;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    border: 1px solid var(--border-light);
+  }
+
+  .person-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .role {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  .email-link {
+    font-size: 0.875rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .email-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+
+  .email-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .observer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .observer-name {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .observer-year {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+</style>

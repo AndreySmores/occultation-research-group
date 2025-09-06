@@ -1,0 +1,30 @@
+{
+  "papers": [
+    {
+      "title": "Interpreting the Stellar Occultations of (15094) Polymele – a Lucy Target",
+      "url": "https://ui.adsabs.harvard.edu/abs/2023DPS....5510705L/abstract"
+    },
+    {
+      "title": "A New Double Star Discovered During an Asteroid Occultation of UCAC4 487-057733",
+      "url": "https://doublestarsjournal.org/index.php/jdso/article/view/74"
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/20250605_106_Dione_OBS_DAMIT-5943-Preferred.gif",
+      "alt": "Profile of 106 Dione",
+      "caption": "Profile of 106 Dione from data collected on June 5, 2025. UVA Observers: Andrey Moore"
+    },
+    {
+      "src": "/images/250303_93_Minerva_DAMIT-1797.gif",
+      "alt": "Profile of 93 Minerva",
+      "caption": "Profile of 93 Minerva from data collected on March 3, 2025. UVA Observers: Phillip \"Teddy\" Oakey, Altony Foote"
+    },
+    {
+      "src": "/images/20250130_468861_2013 LU28_ Profile-all.gif",
+      "alt": "Profile of 468861 2013 LU28",
+      "caption": "Profile of 468861 2013 LU28 from data collected on January 30, 2025. UVA Observers: Phillip \"Teddy\" Oakey, Keya Garg, Altony Foote, Andrey Moore, Eleanor Press, John DiPasquale, Winston Zhang, Vasilisa Sergienko, Charles Dorsey, Kaila Kennedy, Nadara Hudson"
+    }
+  ]
+}
+

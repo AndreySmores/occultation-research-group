@@ -1,0 +1,102 @@
+---
+import People from '../components/People.astro';
+import Results from '../components/Results.astro';
+import Publications from '../components/Publications.astro';
+import NewsList from '../components/NewsList.astro';
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Occultation Research Group - Advancing our understanding of trans-Neptunian objects through stellar occultation observations" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Occultation Group at UVA</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/styles/global.css" as="style" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://occultationgroup.org/" />
+    <meta property="og:title" content="Occultation Group at UVA" />
+    <meta property="og:description" content="Advancing our understanding of trans-Neptunian objects through stellar occultation observations" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://occultationgroup.org" />
+    <meta property="twitter:title" content="Occultation Group at UVA" />
+    <meta property="twitter:description" content="Advancing our understanding of trans-Neptunian objects through stellar occultation observations" />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header class="header" role="banner">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="site-title">Occultation Group at UVA</h1>
+          <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="#main-content">Home</a>
+            <a href="#results">Results</a>
+            <a href="/news">News</a>
+            <a href="/about">About</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="main" role="main">
+      <div class="container">
+        <div class="three-column-layout">
+          <!-- Left Column: People -->
+          <aside class="people-column" role="complementary" aria-label="People and contacts">
+            <People />
+          </aside>
+
+          <!-- Center Column: Results -->
+          <section id="results" class="results-column" aria-label="Research results and publications">
+            <Results />
+          </section>
+
+          <!-- Right Column: News -->
+          <aside id="news" class="news-column" role="complementary" aria-label="Latest news and updates">
+            <Publications />
+            <NewsList />
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2025 Occultation Group at UVA. All rights reserved.</p>
+          <ul class="footer-links">
+            <li><a href="mailto:pvz5hs@virginia.edu">Contact</a></li>
+            <li><a href="https://github.com/occultation-research-group" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="/rss.xml">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Analytics placeholder - uncomment and configure as needed -->
+    <!-- 
+    <script defer data-domain="your-domain.com" src="https://plausible.io/js/script.js"></script>
+    -->
+    
+    <!-- Google Analytics placeholder - uncomment and configure as needed -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+  </body>
+</html>

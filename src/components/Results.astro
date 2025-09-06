@@ -1,0 +1,146 @@
+---
+import resultsData from '../data/results.json';
+---
+
+<div class="results-section">
+  <section class="images-section">
+    <h2>Recent Results</h2>
+
+    <!-- External link section - now ABOVE the images -->
+    <div class="external-link">
+      <p>
+        All asteroidal occultation reviewed results for North America 
+        can be found 
+        <a 
+          href="https://www.asteroidoccultation.com/observations/Results/Reviewed/index.html" 
+          target="_blank" 
+          rel="noopener noreferrer"
+        >
+          here
+        </a>.
+        We have included some of the most recent results in which members of our group contriubted data to a compiled profile below. 
+      </p>
+    </div>
+
+    {resultsData.images.length > 0 ? (
+      <div class="image-gallery">
+        {resultsData.images.map((image) => (
+          <div class="image-item">
+            <a href={image.src} target="_blank" rel="noopener noreferrer" class="image-link">
+              <img 
+                src={image.src} 
+                alt={image.alt}
+                loading="lazy"
+                class="gallery-image"
+              />
+            </a>
+            <p class="image-caption">{image.caption}</p>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p>No images available yet. Check back soon for our latest observations!</p>
+      </div>
+    )}
+  </section>
+</div>
+
+<style>
+  .results-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .images-section {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+  }
+
+  /* External link styling */
+  .external-link {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  .external-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .external-link a:hover {
+    text-decoration: underline;
+  }
+
+  .image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .image-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .image-link {
+    display: block;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .image-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .image-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .image-caption {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .image-gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

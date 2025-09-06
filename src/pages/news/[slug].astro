@@ -1,0 +1,364 @@
+---
+import { getCollection } from 'astro:content';
+import '../../styles/global.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={post.data.summary || `Read about ${post.data.title} from Occultation Group at UVA`} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{post.data.title} - Occultation Group at UVA</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content={`https://your-domain.com/news/${post.slug}/`} />
+    <meta property="og:title" content={post.data.title} />
+    <meta property="og:description" content={post.data.summary || `Read about ${post.data.title} from Occultation Group at UVA`} />
+    {post.data.image && <meta property="og:image" content={post.data.image} />}
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`https://your-domain.com/news/${post.slug}/`} />
+    <meta property="twitter:title" content={post.data.title} />
+    <meta property="twitter:description" content={post.data.summary || `Read about ${post.data.title} from Occultation Group at UVA`} />
+    {post.data.image && <meta property="twitter:image" content={post.data.image} />}
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <header class="header" role="banner">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="site-title">
+            <a href="/" style="color: inherit; text-decoration: none;">Occultation Group at UVA</a>
+          </h1>
+          <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="/">Home</a>
+            <a href="/results">Results</a>
+            <a href="/news">News</a>
+            <a href="/about">About</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="main" role="main">
+      <div class="container">
+        <article class="blog-post">
+          <header class="post-header">
+            <nav class="breadcrumb">
+              <a href="/">Home</a> / <a href="/news">News</a> / <span>{post.data.title}</span>
+            </nav>
+            
+            <time class="post-date" datetime={post.data.date.toISOString()}>
+              {post.data.date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+            
+            <h1 class="post-title">{post.data.title}</h1>
+            
+            {post.data.summary && (
+              <p class="post-summary">{post.data.summary}</p>
+            )}
+          </header>
+          
+          {post.data.image && (
+            <div class="post-image">
+              <img 
+                src={post.data.image} 
+                alt={`Image for ${post.data.title}`}
+                loading="eager"
+              />
+            </div>
+          )}
+
+          {post.data.video && (
+            <div class="post-video">
+              <video controls preload="metadata">
+                <source src={post.data.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          )}
+
+          {post.data.youtube && (
+            <div class="post-youtube">
+              <iframe 
+                src={`https://www.youtube.com/embed/${post.data.youtube}`}
+                title={`YouTube video for ${post.data.title}`}
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen
+                loading="eager"
+              ></iframe>
+            </div>
+          )}
+
+          <div class="post-content">
+            <Content />
+          </div>
+          
+          <footer class="post-footer">
+            <div class="post-navigation">
+              <a href="/news" class="back-to-news">← Back to News</a>
+            </div>
+          </footer>
+        </article>
+      </div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2025 Occultation Group at UVA. All rights reserved.</p>
+          <ul class="footer-links">
+            <li><a href="mailto:pvz5hs@virginia.edu">Contact</a></li>
+            <li><a href="https://github.com/occultation-research-group" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="/rss.xml">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+  }
+
+  .post-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .breadcrumb {
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+
+  .breadcrumb a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover {
+    text-decoration: underline;
+  }
+
+  .post-date {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .post-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 1rem 0;
+    color: var(--text-primary);
+  }
+
+  .post-summary {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .post-image,
+  .post-video,
+  .post-youtube {
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .post-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .post-youtube {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  }
+
+  .post-youtube iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .post-content {
+    color: var(--text-primary);
+    line-height: 1.7;
+    font-size: 1.125rem;
+  }
+
+  .post-content h1,
+  .post-content h2,
+  .post-content h3,
+  .post-content h4,
+  .post-content h5,
+  .post-content h6 {
+    margin: 2rem 0 1rem 0;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .post-content h1:first-child,
+  .post-content h2:first-child,
+  .post-content h3:first-child,
+  .post-content h4:first-child,
+  .post-content h5:first-child,
+  .post-content h6:first-child {
+    margin-top: 0;
+  }
+
+  .post-content p {
+    margin: 0 0 1.5rem 0;
+  }
+
+  .post-content ul,
+  .post-content ol {
+    margin: 0 0 1.5rem 0;
+    padding-left: 2rem;
+  }
+
+  .post-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .post-content a:hover {
+    text-decoration: underline;
+  }
+
+  .post-content code {
+    background: var(--bg-tertiary);
+    padding: 0.125rem 0.25rem;
+    border-radius: 3px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9em;
+  }
+
+  .post-content pre {
+    background: var(--bg-tertiary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-light);
+  }
+
+  .post-content pre code {
+    background: none;
+    padding: 0;
+  }
+
+  .post-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  .post-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .post-navigation {
+    text-align: center;
+  }
+
+  .back-to-news {
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .back-to-news:hover {
+    color: var(--accent-hover);
+  }
+
+  .back-to-news:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .blog-post {
+      padding: 1.5rem;
+      margin: 0 1rem;
+    }
+    
+    .post-title {
+      font-size: 2rem;
+    }
+    
+    .post-content {
+      font-size: 1rem;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .back-to-news {
+      transition: none;
+    }
+  }
+</style>

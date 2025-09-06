@@ -1,0 +1,35 @@
+{
+  "executive": [
+    {
+      "name": "Phillip \"Teddy\" Oakey",
+      "role": "President",
+      "email": "rxr4nd@virginia.edu"
+    },
+    {
+      "name": "Keya Garg",
+      "role": "Vice President",
+      "email": "vsp9cu@virginia.edu"
+    },
+    {
+      "name": "Altony Foote",
+      "role": "Treasurer",
+      "email": "evv2dx@virginia.edu"
+    },
+    {
+        "name": "Andrey Moore",
+        "role": "Secretary/Machinist",
+        "email": "pvz5hs@virginia.edu"
+      }
+  ],
+  "people": [
+    {
+      "name": "Dr. Mike Skrutskie"
+    },
+    {
+      "name": "Dr. Anne Verbischer"
+    },
+    {
+      "name": "Dr. Matthew Nelson"
+    } 
+  ]
+}
