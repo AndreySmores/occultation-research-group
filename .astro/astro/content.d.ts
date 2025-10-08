@@ -1,4 +1,15 @@
 declare module 'astro:content' {
+	interface Render {
+		'.mdx': Promise<{
+			Content: import('astro').MarkdownInstance<{}>['Content'];
+			headings: import('astro').MarkdownHeading[];
+			remarkPluginFrontmatter: Record<string, any>;
+			components: import('astro').MDXInstance<{}>['components'];
+		}>;
+	}
+}
+
+declare module 'astro:content' {
 	interface RenderResult {
 		Content: import('astro/runtime/server/index.js').AstroComponentFactory;
 		headings: import('astro').MarkdownHeading[];
@@ -141,13 +152,27 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"news": {
-"20250819_59980_1999_SG6.md": {
-	id: "20250819_59980_1999_SG6.md";
+"20220327_15904_Polymele.mdx": {
+	id: "20220327_15904_Polymele.mdx";
+  slug: "20220327_15904_polymele";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".mdx"] };
+"20230601_Pluto.mdx": {
+	id: "20230601_Pluto.mdx";
+  slug: "20230601_pluto";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".mdx"] };
+"20250819_59980_1999_SG6.mdx": {
+	id: "20250819_59980_1999_SG6.mdx";
   slug: "20250819_59980_1999_sg6";
   body: string;
   collection: "news";
   data: InferEntrySchema<"news">
-} & { render(): Render[".md"] };
+} & { render(): Render[".mdx"] };
 };
 
 	};

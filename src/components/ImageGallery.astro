@@ -1,0 +1,97 @@
+---
+export interface GalleryImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+export interface Props {
+  images: GalleryImage[];
+  columns?: number;
+  gap?: string;
+  captionStyle?: 'individual' | 'none' | 'group';
+  groupCaption?: string;
+}
+
+const { images, columns = 2, gap = '1rem', captionStyle = 'individual', groupCaption } = Astro.props;
+
+const gridColumns = columns === 1 ? '1fr' : `repeat(${columns}, 1fr)`;
+---
+
+<div class="image-gallery">
+  {groupCaption && captionStyle === 'group' && (
+    <h3 class="gallery-title">{groupCaption}</h3>
+  )}
+  
+  <div 
+    class="gallery-grid"
+    style={`
+      display: grid;
+      grid-template-columns: ${gridColumns};
+      gap: ${gap};
+      margin: 2rem 0;
+    `}
+  >
+    {images.map((image, index) => (
+      <div class="gallery-item">
+        <img 
+          src={image.src} 
+          alt={image.alt}
+          style="
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: block;
+          "
+          loading="lazy"
+        />
+        {image.caption && captionStyle === 'individual' && (
+          <p class="gallery-caption">{image.caption}</p>
+        )}
+      </div>
+    ))}
+  </div>
+  
+  {groupCaption && captionStyle === 'group' && (
+    <p class="gallery-group-caption">{groupCaption}</p>
+  )}
+</div>
+
+<style>
+  .gallery-title {
+    text-align: center;
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .gallery-caption {
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .gallery-group-caption {
+    font-style: italic;
+    color: #666;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .gallery-item {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

@@ -75,12 +75,48 @@ const { Content } = await post.render();
             
             <h1 class="post-title">{post.data.title}</h1>
             
+            <div class="post-meta">
+              <div class="author-info">
+                <span class="author-label">By:</span>
+                <span class="author-name">{post.data.author}</span>
+                {post.data.authorEmail && (
+                  <a href={`mailto:${post.data.authorEmail}`} class="author-email">
+                    {post.data.authorEmail}
+                  </a>
+                )}
+              </div>
+              
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="post-tags">
+                  {post.data.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+            
             {post.data.summary && (
               <p class="post-summary">{post.data.summary}</p>
             )}
           </header>
           
-          {post.data.image && (
+          {/* Only show automatic images for .md files, not .mdx files */}
+          {!post.id.endsWith('.mdx') && (post.data.images && post.data.images.length > 0) && (
+            <div class="post-images">
+              {post.data.images.map((image, index) => (
+                <div class="post-image" key={index}>
+                  <img 
+                    src={image} 
+                    alt={`Image ${index + 1} for ${post.data.title}`}
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+          
+          {/* Backward compatibility for single image - only for .md files */}
+          {!post.id.endsWith('.mdx') && (!post.data.images || post.data.images.length === 0) && post.data.image && (
             <div class="post-image">
               <img 
                 src={post.data.image} 
@@ -115,6 +151,32 @@ const { Content } = await post.render();
           <div class="post-content">
             <Content />
           </div>
+          
+          {post.data.relatedLinks && post.data.relatedLinks.length > 0 && (
+            <aside class="related-links">
+              <h3 class="related-links-title">Related Links</h3>
+              <ul class="related-links-list">
+                {post.data.relatedLinks.map((link) => (
+                  <li class="related-link-item">
+                    <a href={link.url} class="related-link" target="_blank" rel="noopener noreferrer">
+                      <div class="related-link-content">
+                        <span class="related-link-title">{link.title}</span>
+                        {link.description && (
+                          <span class="related-link-description">{link.description}</span>
+                        )}
+                      </div>
+                      <div class="related-link-meta">
+                        {link.type && (
+                          <span class="related-link-type">{link.type}</span>
+                        )}
+                        <span class="related-link-icon">↗</span>
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          )}
           
           <footer class="post-footer">
             <div class="post-navigation">
@@ -187,6 +249,58 @@ const { Content } = await post.render();
     color: var(--text-primary);
   }
 
+  .post-meta {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .author-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .author-name {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .author-email {
+    font-size: 0.875rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .author-email:hover {
+    text-decoration: underline;
+  }
+
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
   .post-summary {
     font-size: 1.125rem;
     color: var(--text-secondary);
@@ -195,12 +309,23 @@ const { Content } = await post.render();
     font-weight: 500;
   }
 
+  .post-images {
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
   .post-image,
   .post-video,
   .post-youtube {
     margin: 2rem 0;
     border-radius: 8px;
     overflow: hidden;
+  }
+
+  .post-images .post-image {
+    margin: 0;
   }
 
   .post-image img {
@@ -308,6 +433,108 @@ const { Content } = await post.render();
     margin: 1.5rem 0;
     font-style: italic;
     color: var(--text-secondary);
+  }
+
+  .related-links {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+  }
+
+  .related-links-title {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .related-links-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .related-link-item {
+    margin: 0;
+  }
+
+  .related-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+  }
+
+  .related-link:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-color);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .related-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  .related-link-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .related-link-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .related-link-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .related-link-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .related-link-type {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  .related-link-icon {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: bold;
+  }
+
+  .related-link:hover .related-link-icon {
+    color: var(--accent-color);
   }
 
   .post-footer {

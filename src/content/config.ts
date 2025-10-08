@@ -5,10 +5,20 @@ const news = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string().transform((str) => new Date(str)),
-    image: z.string().optional(),
+    author: z.string(),
+    authorEmail: z.string().optional(),
+    images: z.array(z.string()).optional(),
+    image: z.string().optional(), // Keep for backward compatibility
     video: z.string().optional(),
     youtube: z.string().optional(),
     summary: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    relatedLinks: z.array(z.object({
+      title: z.string(),
+      url: z.string(),
+      description: z.string().optional(),
+      type: z.enum(['article', 'paper', 'video', 'website', 'other']).optional(),
+    })).optional(),
   }),
 });
 

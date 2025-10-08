@@ -1,0 +1,148 @@
+---
+export interface ComparisonImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+export interface Props {
+  leftImage: ComparisonImage;
+  rightImage: ComparisonImage;
+  title?: string;
+  orientation?: 'horizontal' | 'vertical';
+  showLabels?: boolean;
+  leftLabel?: string;
+  rightLabel?: string;
+}
+
+const { 
+  leftImage, 
+  rightImage, 
+  title, 
+  orientation = 'horizontal',
+  showLabels = true,
+  leftLabel = 'Before',
+  rightLabel = 'After'
+} = Astro.props;
+
+const isHorizontal = orientation === 'horizontal';
+---
+
+<div class="image-comparison">
+  {title && <h3 class="comparison-title">{title}</h3>}
+  
+  <div 
+    class={`comparison-container ${isHorizontal ? 'horizontal' : 'vertical'}`}
+    style={`
+      display: flex;
+      flex-direction: ${isHorizontal ? 'row' : 'column'};
+      gap: 1rem;
+      margin: 2rem 0;
+      align-items: ${isHorizontal ? 'flex-start' : 'center'};
+    `}
+  >
+    <div class="comparison-item">
+      {showLabels && (
+        <div class="comparison-label left-label">{leftLabel}</div>
+      )}
+      <img 
+        src={leftImage.src} 
+        alt={leftImage.alt}
+        style="
+          width: 100%;
+          height: auto;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          display: block;
+        "
+        loading="lazy"
+      />
+      {leftImage.caption && (
+        <p class="comparison-caption">{leftImage.caption}</p>
+      )}
+    </div>
+    
+    <div class="comparison-item">
+      {showLabels && (
+        <div class="comparison-label right-label">{rightLabel}</div>
+      )}
+      <img 
+        src={rightImage.src} 
+        alt={rightImage.alt}
+        style="
+          width: 100%;
+          height: auto;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          display: block;
+        "
+        loading="lazy"
+      />
+      {rightImage.caption && (
+        <p class="comparison-caption">{rightImage.caption}</p>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  .comparison-title {
+    text-align: center;
+    margin: 0 0 1rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .comparison-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+
+  .comparison-label {
+    position: absolute;
+    top: 0.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+  .left-label {
+    left: 0.5rem;
+  }
+
+  .right-label {
+    right: 0.5rem;
+  }
+
+  .comparison-caption {
+    font-style: italic;
+    color: #666;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .comparison-container.vertical {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-container.horizontal {
+      flex-direction: column;
+    }
+    
+    .comparison-label {
+      position: static;
+      margin-bottom: 0.5rem;
+      display: inline-block;
+    }
+  }
+</style>

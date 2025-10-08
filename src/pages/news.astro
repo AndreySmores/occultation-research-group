@@ -64,7 +64,20 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
                     </h2>
                   </header>
                   
-                  {post.data.image && (
+                  {post.data.images && post.data.images.length > 0 && (
+                    <div class="news-image">
+                      <a href={`/news/${post.slug}/`}>
+                        <img 
+                          src={post.data.images[0]} 
+                          alt={`Preview image for ${post.data.title}`}
+                          loading="lazy"
+                        />
+                      </a>
+                    </div>
+                  )}
+                  
+                  {/* Backward compatibility for single image */}
+                  {(!post.data.images || post.data.images.length === 0) && post.data.image && (
                     <div class="news-image">
                       <a href={`/news/${post.slug}/`}>
                         <img 
@@ -103,9 +116,12 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
                       <p class="news-summary">{post.data.summary}</p>
                     )}
                     
-                    <div class="news-excerpt">
-                      <p>{post.body.split('\n\n')[0].substring(0, 300)}...</p>
-                    </div>
+                    {/* Skip excerpt for files with import statements to avoid showing them */}
+                    {!post.body.includes('import ') && (
+                      <div class="news-excerpt">
+                        <p>{post.body.split('\n\n')[0].substring(0, 300)}...</p>
+                      </div>
+                    )}
                     
                     <a href={`/news/${post.slug}/`} class="read-more-link">
                       Read full article →

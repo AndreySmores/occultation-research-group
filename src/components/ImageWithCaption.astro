@@ -1,0 +1,92 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  width?: string;
+  height?: string;
+  placement?: 'left' | 'right' | 'center' | 'full';
+  size?: 'small' | 'medium' | 'large';
+}
+
+const { src, alt, caption, width, height, placement = 'center', size = 'medium' } = Astro.props;
+
+const getSizeStyles = (size: string) => {
+  switch (size) {
+    case 'small':
+      return { maxWidth: '300px', width: '100%' };
+    case 'large':
+      return { maxWidth: '100%', width: '100%' };
+    case 'medium':
+    default:
+      return { maxWidth: '600px', width: '100%' };
+  }
+};
+
+const getPlacementStyles = (placement: string) => {
+  switch (placement) {
+    case 'left':
+      return { 
+        container: 'display: flex; align-items: flex-start; gap: 1rem; margin: 2rem 0;',
+        image: 'flex: 0 0 auto; max-width: 300px;',
+        content: 'flex: 1;'
+      };
+    case 'right':
+      return { 
+        container: 'display: flex; align-items: flex-start; gap: 1rem; margin: 2rem 0; flex-direction: row-reverse;',
+        image: 'flex: 0 0 auto; max-width: 300px;',
+        content: 'flex: 1;'
+      };
+    case 'full':
+      return { 
+        container: 'margin: 2rem 0;',
+        image: 'width: 100%; max-width: 100%;',
+        content: ''
+      };
+    case 'center':
+    default:
+      return { 
+        container: 'text-align: center; margin: 2rem 0;',
+        image: 'margin: 0 auto;',
+        content: ''
+      };
+  }
+};
+
+const sizeStyles = getSizeStyles(size);
+const placementStyles = getPlacementStyles(placement);
+---
+
+<div style={placementStyles.container}>
+  <div style={`${placementStyles.image} ${placement === 'left' || placement === 'right' ? '' : 'text-align: center;'}`}>
+    <img 
+      src={src} 
+      alt={alt}
+      style={`
+        ${Object.entries(sizeStyles).map(([key, value]) => `${key}: ${value}`).join('; ')};
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        ${width ? `width: ${width};` : ''}
+        ${height ? `height: ${height};` : ''}
+      `}
+      loading="lazy"
+    />
+    {caption && (
+      <p style="
+        font-style: italic; 
+        color: #666; 
+        margin-top: 0.5rem; 
+        font-size: 0.9rem;
+        line-height: 1.4;
+      ">
+        {caption}
+      </p>
+    )}
+  </div>
+  {placement === 'left' || placement === 'right' ? (
+    <div style={placementStyles.content}>
+      <slot />
+    </div>
+  ) : null}
+</div>

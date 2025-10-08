@@ -11,62 +11,88 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
     <div class="news-list">
       {sortedPosts.map((post) => (
         <article class="news-item">
-          <header class="news-header">
-            <time class="news-date" datetime={post.data.date.toISOString()}>
-              {post.data.date.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </time>
-            <h3 class="news-title">{post.data.title}</h3>
-          </header>
-          
-          {post.data.image && (
-            <div class="news-image">
-              <img 
-                src={post.data.image} 
-                alt={`Image for ${post.data.title}`}
-                loading="lazy"
-              />
-            </div>
-          )}
-
-          {post.data.video && (
-            <div class="news-video">
-              <video controls preload="metadata">
-                <source src={post.data.video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          )}
-
-          {post.data.youtube && (
-            <div class="news-youtube">
-              <iframe 
-                src={`https://www.youtube.com/embed/${post.data.youtube}`}
-                title={`YouTube video for ${post.data.title}`}
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen
-                loading="lazy"
-              ></iframe>
-            </div>
-          )}
-
-          <div class="news-content">
-            {post.data.summary && (
-              <p class="news-summary">{post.data.summary}</p>
+          <a href={`/news/${post.slug}/`} class="news-item-link" aria-label={`Read article: ${post.data.title}`}>
+            <header class="news-header">
+              <time class="news-date" datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </time>
+              <h3 class="news-title">{post.data.title}</h3>
+              <div class="news-author">
+                <span class="author-label">By:</span>
+                <span class="author-name">{post.data.author}</span>
+              </div>
+              {post.data.tags && post.data.tags.length > 0 && (
+                <div class="news-tags">
+                  {post.data.tags.slice(0, 3).map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                  {post.data.tags.length > 3 && (
+                    <span class="tag-more">+{post.data.tags.length - 3} more</span>
+                  )}
+                </div>
+              )}
+            </header>
+            
+            {/* Show images for news previews */}
+            {post.data.images && post.data.images.length > 0 && (
+              <div class="news-image">
+                <img 
+                  src={post.data.images[0]} 
+                  alt={`Preview image for ${post.data.title}`}
+                  loading="lazy"
+                />
+              </div>
             )}
             
-            <div class="news-excerpt">
-              <p>{post.body.split('\n\n')[0].substring(0, 300)}...</p>
+            {/* Backward compatibility for single image */}
+            {(!post.data.images || post.data.images.length === 0) && post.data.image && (
+              <div class="news-image">
+                <img 
+                  src={post.data.image} 
+                  alt={`Image for ${post.data.title}`}
+                  loading="lazy"
+                />
+              </div>
+            )}
+
+            {post.data.video && (
+              <div class="news-video">
+                <video controls preload="metadata">
+                  <source src={post.data.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
+
+            {post.data.youtube && (
+              <div class="news-youtube">
+                <iframe 
+                  src={`https://www.youtube.com/embed/${post.data.youtube}`}
+                  title={`YouTube video for ${post.data.title}`}
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            )}
+
+            <div class="news-content">
+              {post.data.summary && (
+                <p class="news-summary">{post.data.summary}</p>
+              )}
+              
+              {/* Excerpt removed for MDX files to avoid import statement issues */}
+              
+              <span class="read-more-indicator">
+                Read full article →
+              </span>
             </div>
-            
-            <a href={`/news/${post.slug}/`} class="read-more-link">
-              Read full article →
-            </a>
-          </div>
+          </a>
         </article>
       ))}
     </div>
@@ -101,15 +127,34 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
   }
 
   .news-item {
-    padding: 1.5rem;
     background: var(--bg-secondary);
     border: 1px solid var(--border-light);
     border-radius: 8px;
-    transition: background-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
   }
 
   .news-item:hover {
-    background: var(--bg-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .news-item-link {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .news-item-link:hover {
+    color: inherit;
+  }
+
+  .news-item-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -2px;
+    border-radius: 8px;
   }
 
   .news-header {
@@ -124,11 +169,62 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
   }
 
   .news-title {
-    margin: 0;
+    margin: 0 0 0.5rem 0;
     font-size: 1.125rem;
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.3;
+  }
+
+  .news-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .news-author .author-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .news-author .author-name {
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .news-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .news-tags .tag {
+    background: var(--accent-color);
+    color: white;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.75rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+  }
+
+  .news-tags .tag-more {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.75rem;
+    font-size: 0.625rem;
+    font-weight: 500;
+  }
+
+  .news-images {
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
   }
 
   .news-image,
@@ -136,6 +232,40 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
     margin: 1rem 0;
     border-radius: 6px;
     overflow: hidden;
+    position: relative;
+  }
+
+  .news-video::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .news-video video {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+  }
+
+  .news-images .news-image {
+    margin: 0;
+  }
+
+  .image-count {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 6px;
+    min-height: 100px;
   }
 
   .news-image img,
@@ -162,6 +292,8 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
     width: 100%;
     height: 100%;
     border: none;
+    z-index: 2;
+    pointer-events: auto;
   }
 
   .news-content {
@@ -180,23 +312,18 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
     margin-bottom: 1rem;
   }
 
-  .read-more-link {
+  .read-more-indicator {
     display: inline-flex;
     align-items: center;
     color: var(--accent-color);
     font-weight: 500;
-    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 1rem;
     transition: color 0.2s ease;
   }
 
-  .read-more-link:hover {
+  .news-item:hover .read-more-indicator {
     color: var(--accent-hover);
-  }
-
-  .read-more-link:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-    border-radius: 2px;
   }
 
   .empty-state {
