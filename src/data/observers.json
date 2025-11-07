@@ -24,12 +24,7 @@
       "name": "John DiPasquale",
       "year": "Second Year"
     },
-  
-    {
-      "name": "Kaushik Elavarasu",
-      "year": "First Year"
-    },
-  
+
     {
       "name": "Andy Valerio",
       "year": "First Year"
@@ -81,6 +76,46 @@
     {
       "name": "Kaila Kennedy",
       "year": "Third Year"
+    },
+    {
+      "name": "Diego Gomez",
+      "year": "First Year"
+    },
+    {
+      "name": "Casey York",
+      "year": "First Year"
+    },
+    {
+      "name": "Andrés Salinas",
+      "year": "First Year"
+    },
+    {
+      "name": "Kaushik Elavarasu",
+      "year": "First Year"
+    },
+    {
+      "name": "James Beck",
+      "year": "First Year"
+    },
+    {
+      "name": "Siwon Park",
+      "year": "First Year"
+    },
+    {
+      "name": "Matthew Walls",
+      "year": "First Year"
+    },
+    {
+      "name": "Rene O'Reilly",
+      "year": "Second Year"
+    },
+    {
+      "name": "Colin Surovell",
+      "year": "First Year"
+    },
+    {
+      "name": "Preston Le",
+      "year": "First Year"
     }
   ]
 }
