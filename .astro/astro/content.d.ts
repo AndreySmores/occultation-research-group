@@ -173,6 +173,13 @@ declare module 'astro:content' {
   collection: "news";
   data: InferEntrySchema<"news">
 } & { render(): Render[".mdx"] };
+"20250930_50000_Quaoar.mdx": {
+	id: "20250930_50000_Quaoar.mdx";
+  slug: "20250930_50000_quaoar";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".mdx"] };
 };
 
 	};
