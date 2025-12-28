@@ -47,7 +47,13 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
         <div class="news-listing">
           {sortedPosts.length > 0 ? (
             <div class="news-grid">
-              {sortedPosts.map((post) => (
+              {sortedPosts.map((post) => {
+                const isExternal = post.data.externalUrl || post.data.isExternal;
+                const articleUrl = isExternal ? post.data.externalUrl! : `/news/${post.slug}/`;
+                const linkTarget = isExternal ? '_blank' : '_self';
+                const linkRel = isExternal ? 'noopener noreferrer' : '';
+                
+                return (
                 <article class="news-card">
                   <header class="news-card-header">
                     <time class="news-date" datetime={post.data.date.toISOString()}>
@@ -58,15 +64,23 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
                       })}
                     </time>
                     <h2 class="news-title">
-                      <a href={`/news/${post.slug}/`} class="news-title-link">
+                      <a href={articleUrl} class="news-title-link" target={linkTarget} rel={linkRel}>
                         {post.data.title}
                       </a>
                     </h2>
+                    <div class="news-author">
+                      <span class="author-label">By:</span>
+                      <span class="author-name">
+                        {isExternal && post.data.source 
+                          ? `${post.data.author}, ${post.data.source}` 
+                          : post.data.author}
+                      </span>
+                    </div>
                   </header>
                   
                   {post.data.images && post.data.images.length > 0 && (
                     <div class="news-image">
-                      <a href={`/news/${post.slug}/`}>
+                      <a href={articleUrl} target={linkTarget} rel={linkRel}>
                         <img 
                           src={post.data.images[0]} 
                           alt={`Preview image for ${post.data.title}`}
@@ -79,7 +93,7 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
                   {/* Backward compatibility for single image */}
                   {(!post.data.images || post.data.images.length === 0) && post.data.image && (
                     <div class="news-image">
-                      <a href={`/news/${post.slug}/`}>
+                      <a href={articleUrl} target={linkTarget} rel={linkRel}>
                         <img 
                           src={post.data.image} 
                           alt={`Image for ${post.data.title}`}
@@ -123,12 +137,13 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
                       </div>
                     )}
                     
-                    <a href={`/news/${post.slug}/`} class="read-more-link">
-                      Read full article →
+                    <a href={articleUrl} class="read-more-link" target={linkTarget} rel={linkRel}>
+                      {isExternal ? 'Read external article ↗' : 'Read full article →'}
                     </a>
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div class="empty-state">
@@ -167,6 +182,7 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
   }
 
   .news-card {
+    position: relative;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 12px;
@@ -177,6 +193,40 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
   .news-card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px var(--shadow-hover);
+  }
+
+  .external-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 10;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .news-author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .author-label {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .author-name {
+    color: var(--text-primary);
+    font-weight: 600;
   }
 
   .news-card-header {

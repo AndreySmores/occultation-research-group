@@ -6,113 +6,127 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
 ---
 
 <div class="news-section">
-  <h2>Latest News</h2>
-  {sortedPosts.length > 0 ? (
-    <div class="news-list">
-      {sortedPosts.map((post) => (
-        <article class="news-item">
-          <a href={`/news/${post.slug}/`} class="news-item-link" aria-label={`Read article: ${post.data.title}`}>
-            <header class="news-header">
-              <time class="news-date" datetime={post.data.date.toISOString()}>
-                {post.data.date.toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </time>
-              <h3 class="news-title">{post.data.title}</h3>
-              <div class="news-author">
-                <span class="author-label">By:</span>
-                <span class="author-name">{post.data.author}</span>
-              </div>
-              {post.data.tags && post.data.tags.length > 0 && (
-                <div class="news-tags">
-                  {post.data.tags.slice(0, 3).map((tag) => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                  {post.data.tags.length > 3 && (
-                    <span class="tag-more">+{post.data.tags.length - 3} more</span>
-                  )}
+  <h2 class="news-header-fixed">Latest News</h2>
+
+  <div class="news-list-scrollable">
+    {sortedPosts.length > 0 ? (
+      sortedPosts.map((post) => {
+        const isExternal = post.data.externalUrl || post.data.isExternal;
+        const articleUrl = isExternal ? post.data.externalUrl! : `/news/${post.slug}/`;
+        const linkTarget = isExternal ? '_blank' : '_self';
+        const linkRel = isExternal ? 'noopener noreferrer' : '';
+
+        return (
+          <article class="news-item">
+            <a 
+              href={articleUrl} 
+              class="news-item-link" 
+              target={linkTarget}
+              rel={linkRel}
+              aria-label={isExternal ? `Read external article: ${post.data.title}` : `Read article: ${post.data.title}`}
+            >
+              <header class="news-header">
+                <time class="news-date" datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </time>
+                <h3 class="news-title">{post.data.title}</h3>
+                <div class="news-author">
+                  <span class="author-label">By:</span>
+                  <span class="author-name">
+                    {isExternal && post.data.source 
+                      ? `${post.data.author}, ${post.data.source}` 
+                      : post.data.author}
+                  </span>
+                </div>
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="news-tags">
+                    {post.data.tags.slice(0, 3).map((tag) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                    {post.data.tags.length > 3 && (
+                      <span class="tag-more">+{post.data.tags.length - 3} more</span>
+                    )}
+                  </div>
+                )}
+              </header>
+
+              {post.data.images && post.data.images.length > 0 && (
+                <div class="news-image">
+                  <img 
+                    src={post.data.images[0]} 
+                    alt={`Preview image for ${post.data.title}`}
+                    loading="lazy"
+                  />
                 </div>
               )}
-            </header>
-            
-            {/* Show images for news previews */}
-            {post.data.images && post.data.images.length > 0 && (
-              <div class="news-image">
-                <img 
-                  src={post.data.images[0]} 
-                  alt={`Preview image for ${post.data.title}`}
-                  loading="lazy"
-                />
-              </div>
-            )}
-            
-            {/* Backward compatibility for single image */}
-            {(!post.data.images || post.data.images.length === 0) && post.data.image && (
-              <div class="news-image">
-                <img 
-                  src={post.data.image} 
-                  alt={`Image for ${post.data.title}`}
-                  loading="lazy"
-                />
-              </div>
-            )}
 
-            {post.data.video && (
-              <div class="news-video">
-                <video controls preload="metadata">
-                  <source src={post.data.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            )}
-
-            {post.data.youtube && (
-              <div class="news-youtube">
-                <iframe 
-                  src={`https://www.youtube.com/embed/${post.data.youtube}`}
-                  title={`YouTube video for ${post.data.title}`}
-                  frameborder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowfullscreen
-                  loading="lazy"
-                ></iframe>
-              </div>
-            )}
-
-            <div class="news-content">
-              {post.data.summary && (
-                <p class="news-summary">{post.data.summary}</p>
+              {(!post.data.images || post.data.images.length === 0) && post.data.image && (
+                <div class="news-image">
+                  <img 
+                    src={post.data.image} 
+                    alt={`Image for ${post.data.title}`}
+                    loading="lazy"
+                  />
+                </div>
               )}
-              
-              {/* Excerpt removed for MDX files to avoid import statement issues */}
-              
-              <span class="read-more-indicator">
-                Read full article →
-              </span>
-            </div>
-          </a>
-        </article>
-      ))}
-    </div>
-  ) : (
-    <div class="empty-state">
-      <p>No news posts available yet. Check back soon for updates!</p>
-    </div>
-  )}
+
+              {post.data.video && (
+                <div class="news-video">
+                  <video controls preload="metadata">
+                    <source src={post.data.video} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              )}
+
+              {post.data.youtube && (
+                <div class="news-youtube">
+                  <iframe 
+                    src={`https://www.youtube.com/embed/${post.data.youtube}`}
+                    title={`YouTube video for ${post.data.title}`}
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              )}
+
+              <div class="news-content">
+                {post.data.summary && (
+                  <p class="news-summary">{post.data.summary}</p>
+                )}
+                <span class="read-more-indicator">
+                  {isExternal ? 'Read external article ↗' : 'Read full article →'}
+                </span>
+              </div>
+            </a>
+          </article>
+        );
+      })
+    ) : (
+      <div class="empty-state">
+        <p>No news posts available yet. Check back soon for updates!</p>
+      </div>
+    )}
+  </div>
 </div>
 
 <style>
-  .news-section {
+.news-section {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
+    margin-bottom: 1.5rem;
   }
 
-  h2 {
-    margin: 0 0 1.5rem 0;
+.news-header-fixed {
+    margin: 0 0 1rem 0;
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-primary);
@@ -120,227 +134,188 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
     padding-bottom: 0.5rem;
   }
 
-  .news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+.news-list-scrollable {
+  flex: 1;
+  max-height: 114rem; /* Fits ~5 observers */
+  overflow-y: auto;
+  padding-right: 0.5rem; /* Extra space for scrollbar */
+}
 
-  .news-item {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-light);
-    border-radius: 8px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    overflow: hidden;
-  }
+/* Custom scrollbar */
+.news-list-scrollable::-webkit-scrollbar {
+  width: 8px;
+}
 
-  .news-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
+.news-list-scrollable::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
 
-  .news-item-link {
-    display: block;
-    padding: 1.5rem;
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.2s ease;
-  }
+.news-list-scrollable::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 8px;
+}
 
-  .news-item-link:hover {
-    color: inherit;
-  }
+.news-list-scrollable::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-hover);
+}
 
-  .news-item-link:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: -2px;
-    border-radius: 8px;
-  }
+.news-list-scrollable .news-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 1.5rem;
+}
 
-  .news-header {
-    margin-bottom: 1rem;
-  }
+.news-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
-  .news-date {
-    display: block;
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    margin-bottom: 0.5rem;
-  }
+.news-item-link {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
 
-  .news-title {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.3;
-  }
+.news-item-link:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+  border-radius: 8px;
+}
 
-  .news-author {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
+.news-header {
+  margin-bottom: 1rem;
+}
 
-  .news-author .author-label {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-  }
+.news-date {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
 
-  .news-author .author-name {
-    font-size: 0.75rem;
-    color: var(--text-primary);
-    font-weight: 600;
-  }
+.news-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
 
-  .news-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem;
-    margin-bottom: 0.5rem;
-  }
+.news-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
 
-  .news-tags .tag {
-    background: var(--accent-color);
-    color: white;
-    padding: 0.125rem 0.5rem;
-    border-radius: 0.75rem;
-    font-size: 0.625rem;
-    font-weight: 500;
-  }
+.news-author .author-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
 
-  .news-tags .tag-more {
-    background: var(--bg-tertiary);
-    color: var(--text-secondary);
-    padding: 0.125rem 0.5rem;
-    border-radius: 0.75rem;
-    font-size: 0.625rem;
-    font-weight: 500;
-  }
+.news-author .author-name {
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
 
-  .news-images {
-    margin: 1rem 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.5rem;
-  }
+.news-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
 
-  .news-image,
-  .news-video {
-    margin: 1rem 0;
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-  }
+.news-tags .tag {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+}
 
-  .news-video::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    pointer-events: none;
-  }
+.news-tags .tag-more {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 500;
+}
 
-  .news-video video {
-    position: relative;
-    z-index: 2;
-    pointer-events: auto;
-  }
+.news-image,
+.news-video,
+.news-youtube {
+  margin: 1rem 0;
+  border-radius: 6px;
+  overflow: hidden;
+  width: 100%;
+}
 
-  .news-images .news-image {
-    margin: 0;
-  }
+.news-image img,
+.news-video video,
+.news-youtube iframe {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-  .image-count {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--bg-tertiary);
-    color: var(--text-secondary);
-    font-size: 0.75rem;
-    font-weight: 500;
-    border-radius: 6px;
-    min-height: 100px;
-  }
+.news-youtube {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+}
 
-  .news-image img,
-  .news-video video {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
+.news-youtube iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
-  .news-youtube {
-    margin: 1rem 0;
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  }
+.news-content {
+  margin-top: 1rem;
+}
 
-  .news-youtube iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    z-index: 2;
-    pointer-events: auto;
-  }
+.news-summary {
+  margin: 0 0 1rem 0;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
 
-  .news-content {
-    margin-top: 1rem;
-  }
+.read-more-indicator {
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  transition: color 0.2s ease;
+}
 
-  .news-summary {
-    margin: 0 0 1rem 0;
-    color: var(--text-primary);
-    line-height: 1.5;
-  }
+.news-item:hover .read-more-indicator {
+  color: var(--accent-hover);
+}
 
-  .news-excerpt {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
 
-  .read-more-indicator {
-    display: inline-flex;
-    align-items: center;
-    color: var(--accent-color);
-    font-weight: 500;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    transition: color 0.2s ease;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .news-section {
+    height: 60vh;
   }
-
-  .news-item:hover .read-more-indicator {
-    color: var(--accent-hover);
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-secondary);
-    font-style: italic;
-  }
-
-  /* Reduced motion support */
-  @media (prefers-reduced-motion: reduce) {
-    .news-item {
-      transition: none;
-    }
-    
-    .read-more-link {
-      transition: none;
-    }
-  }
+}
 </style>

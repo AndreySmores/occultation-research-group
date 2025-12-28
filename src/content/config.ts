@@ -19,6 +19,10 @@ const news = defineCollection({
       description: z.string().optional(),
       type: z.enum(['article', 'paper', 'video', 'website', 'other']).optional(),
     })).optional(),
+    // External article fields
+    externalUrl: z.string().url().optional(),
+    source: z.string().optional(), // e.g., "NASA News", "Science Daily"
+    isExternal: z.boolean().optional(),
   }),
 });
 

@@ -113,7 +113,7 @@ a:focus {
 
 /* Layout */
 .container {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 0 1rem;
 }
@@ -226,7 +226,7 @@ a:focus {
   background: var(--bg-secondary);
   border-top: 1px solid var(--border-color);
   padding: 2rem 0;
-  margin-top: 4rem;
+  margin-top: 1rem;
   text-align: center;
   color: var(--text-secondary);
 }

@@ -173,9 +173,23 @@ declare module 'astro:content' {
   collection: "news";
   data: InferEntrySchema<"news">
 } & { render(): Render[".mdx"] };
+"20250915_uva_students_travel_the_world_kelly.md": {
+	id: "20250915_uva_students_travel_the_world_kelly.md";
+  slug: "20250915_uva_students_travel_the_world_kelly";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".md"] };
 "20250930_50000_Quaoar.mdx": {
 	id: "20250930_50000_Quaoar.mdx";
   slug: "20250930_50000_quaoar";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".mdx"] };
+"20251021_623_Chimaera.mdx": {
+	id: "20251021_623_Chimaera.mdx";
+  slug: "20251021_623_chimaera";
   body: string;
   collection: "news";
   data: InferEntrySchema<"news">

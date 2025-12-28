@@ -45,6 +45,9 @@ tags: ["tag1", "tag2", "tag3"]
 - **`video`**: Path to video file
 - **`youtube`**: YouTube video ID
 - **`relatedLinks`**: Array of related links with title, URL, description, and type
+- **`externalUrl`**: URL for external articles (opens in new tab)
+- **`source`**: Source/publication name for external articles (e.g., "NASA News", "Science Daily")
+- **`isExternal`**: Boolean flag to mark article as external (can also be inferred from `externalUrl`)
 
 ## Writing Content
 
@@ -209,6 +212,46 @@ relatedLinks:
 - Responsive design with hover effects
 - Accessible keyboard navigation
 - Clean, professional styling
+
+## External Articles
+
+You can also link to articles written about your group on other websites. These articles appear in your news list with an "External" badge and open in a new tab when clicked.
+
+### Creating an External Article
+
+Create a `.md` or `.mdx` file with minimal frontmatter (no content needed):
+
+```yaml
+---
+title: "UVA Researchers Make Breakthrough Discovery"
+date: "2024-12-01"
+author: "Science Daily Staff"
+externalUrl: "https://www.sciencedaily.com/releases/2024/12/example.html"
+source: "Science Daily"
+isExternal: true
+images: 
+  - "/images/external-article-thumbnail.jpg"
+summary: "Brief description of what the external article is about"
+tags: ["Research", "Discovery"]
+---
+```
+
+**External Article Fields:**
+- **`externalUrl`** (required): The full URL to the external article
+- **`source`** (optional): The publication or website name (e.g., "NASA News", "Science Daily")
+- **`isExternal`** (optional): Set to `true` to explicitly mark as external (can also be inferred from `externalUrl`)
+- **`images`**: Add a thumbnail image for the article preview
+- **`summary`**: Brief description shown in previews
+- **`author`**: Can be the external article's author or publication name
+
+**Features:**
+- Articles display with an "External" or "External Article" badge
+- Clicking opens the article in a new tab
+- Source name is displayed in the author field
+- Visual indicator (↗) in the "Read external article" link
+- No content section needed - just frontmatter
+
+**Note:** External articles don't need MDX content since they link to external sites. However, you can use `.mdx` format if you want to add the imports for consistency.
 
 ## Complete Example
 

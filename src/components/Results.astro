@@ -6,7 +6,7 @@ import resultsData from '../data/results.json';
   <section class="images-section">
     <h2>Recent Results</h2>
 
-    <!-- External link section - now ABOVE the images -->
+    <!-- External link section stays at the top -->
     <div class="external-link">
       <p>
         All asteroidal occultation reviewed results for North America 
@@ -18,7 +18,7 @@ import resultsData from '../data/results.json';
         >
           here
         </a>.
-        We have included some of the most recent results in which members of our group contriubted data to a compiled profile below. 
+        We have included some of the most recent results in which members of our group contributed data to a compiled profile below. 
       </p>
     </div>
 
@@ -47,100 +47,131 @@ import resultsData from '../data/results.json';
 </div>
 
 <style>
-  .results-section {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
+.results-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
-  .images-section {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
-  }
+/* Section container */
+.images-section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
 
-  h2 {
-    margin: 0 0 1rem 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 0.5rem;
-  }
+/* Heading */
+.images-section h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
 
-  /* External link styling */
-  .external-link {
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-  }
+/* External link styling */
+.external-link {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
 
-  .external-link a {
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: 500;
-  }
+.external-link a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+}
 
-  .external-link a:hover {
-    text-decoration: underline;
-  }
+.external-link a:hover {
+  text-decoration: underline;
+}
 
+/* Scrollable image gallery */
+.image-gallery {
+  display: grid;
+  grid-template-columns: 1fr; /* 1 image per row */
+  gap: 1rem;
+
+  max-height: 150vh; /* scrollable height */
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+.image-gallery::-webkit-scrollbar {
+  width: 8px;
+}
+
+.image-gallery::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.image-gallery::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color);
+  border-radius: 8px;
+}
+
+.image-gallery::-webkit-scrollbar-thumb:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Individual image items */
+.image-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.image-link {
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.image-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.image-link:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Image itself */
+.gallery-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.image-caption {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr; /* single column on mobile */
   }
-
-  .image-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .image-link {
-    display: block;
-    border-radius: 6px;
-    overflow: hidden;
-    border: 1px solid var(--border-light);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .image-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .image-link:focus {
-    outline: 2px solid var(--accent-color);
-    outline-offset: 2px;
-  }
-
-  .gallery-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .image-caption {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    margin: 0;
-    line-height: 1.4;
-  }
-
-  .empty-state {
-    text-align: center;
-    padding: 2rem;
-    color: var(--text-secondary);
-    font-style: italic;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .image-gallery {
-      grid-template-columns: 1fr;
-    }
-  }
+}
 </style>

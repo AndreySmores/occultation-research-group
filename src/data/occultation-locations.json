@@ -1,0 +1,28 @@
+{
+  "locations": [
+    {
+      "latitude": 37.737238,
+      "longitude": -97.068056,
+      "asteroid": "59980 1999 SG6",
+      "date": "2025-08-13",
+      "link": "",
+      "observers": ["Phillip Oakey", "Keya Garg", "Andrey Moore", "Uday Kapoor"]
+    },
+    {
+      "latitude": 38.035527,
+      "longitude": -78.516138,
+      "asteroid": "59980 1999 SG6",
+      "date": "2025-08-13",
+      "link": "",
+      "observers": ["The Occultation Group at UVA Garage"]
+    },
+    {
+      "latitude": 21.985129,
+      "longitude": -159.752149,
+      "asteroid": "50000 Quaoar",
+      "date": "2025-09-29",
+      "link": "",
+      "observers": ["Phillip Oakey, Keya Garg, Andrey Moore, John DiPasquale"]
+    }
+  ]
+}

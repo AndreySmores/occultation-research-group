@@ -1,0 +1,311 @@
+---
+import locationsData from '../data/occultation-locations.json';
+
+export interface Props {
+  compact?: boolean;
+  showHeaderLink?: boolean;
+}
+
+const { compact = false, showHeaderLink = true } = Astro.props;
+const locations = locationsData.locations;
+
+// Separate locations into US and worldwide
+const usLocations = locations.filter(loc => {
+  // Rough bounding box for US: lat 24-50, lng -125 to -65
+  return loc.latitude >= 24 && loc.latitude <= 50 && loc.longitude >= -125 && loc.longitude <= -65;
+});
+
+const worldLocations = locations;
+---
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+<div class={`maps-section ${compact ? 'compact' : ''}`}>
+  {showHeaderLink ? (
+    <a href="/maps" class="maps-header-link">
+      <h2 class="maps-section-title">Occultation Observation Locations</h2>
+    </a>
+  ) : (
+    <h2 class="maps-section-title">Occultation Observation Locations</h2>
+  )}
+  
+  <div class="maps-container">
+    <div class="map-wrapper">
+      <h3 class="map-title">United States</h3>
+      <div 
+        id="us-map" 
+        class="map" 
+        data-locations={JSON.stringify(usLocations)}
+      ></div>
+    </div>
+    
+    <div class="map-wrapper">
+      <h3 class="map-title">Worldwide</h3>
+      <div 
+        id="world-map" 
+        class="map" 
+        data-locations={JSON.stringify(worldLocations)}
+      ></div>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ usLocations, worldLocations }}>
+  (function() {
+    function loadScript(src, callback) {
+      const script = document.createElement('script');
+      script.src = src;
+      script.integrity = 'sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=';
+      script.crossOrigin = '';
+      script.onload = callback;
+      document.head.appendChild(script);
+    }
+
+    function initMaps() {
+      if (typeof window.L === 'undefined') {
+        setTimeout(initMaps, 100);
+        return;
+      }
+      
+      const L = window.L;
+      
+      // Fix Leaflet default icon paths
+      delete L.Icon.Default.prototype._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+      });
+
+      const largeMarker = L.icon({
+        iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+        shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+        iconSize: [12, 21], // default Leaflet size
+        iconAnchor: [6, 21], // bottom middle
+        popupAnchor: [1, -34],
+        shadowSize: [21, 21]
+      });
+
+      const smallMarker = L.icon({
+        iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+        iconSize: [6, 10], // default Leaflet size
+        iconAnchor: [3, 10], // bottom middle
+        popupAnchor: [1, -34],
+        shadowSize: [10, 10]
+      });
+
+
+      function createMap(mapId, mapLocations, isUS) {
+        const mapElement = document.getElementById(mapId);
+        const markerIcon = isUS ? largeMarker : smallMarker;
+        if (!mapElement) return;
+        
+        let center, zoom;
+        
+        if (isUS) {
+          center = [39.5, -98.35];
+          zoom = 4;
+        } else {
+          center = [34.8537, 5.7277];
+          zoom = 1;
+        }
+
+        const map = L.map(mapId, {
+          center,
+          zoom,
+          scrollWheelZoom: true,
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          maxZoom: 19,
+        }).addTo(map);
+
+        mapLocations.forEach((location) => {
+          const popupContent = `
+            <div class="map-popup">
+              <strong>${location.asteroid}</strong><br>
+              <span class="popup-date">Date: ${location.date}</span><br>
+              <a 
+              href="${location.link}"
+              class="popup-link"
+              target="_blank"
+              rel="noopener noreferrer"
+              >
+              View Details →
+            </a>
+            </div>
+          `;
+
+          const marker = L.marker(
+            [location.latitude, location.longitude],
+            { icon: markerIcon }
+          ).addTo(map);
+          marker.bindPopup(popupContent);
+          
+        });
+
+        if (mapLocations.length > 0 && isUS) {
+          const bounds = mapLocations.map((loc) => [loc.latitude, loc.longitude]);
+          map.fitBounds(bounds, { padding: [20, 20] });
+        }
+      }
+
+      const usMapEl = document.getElementById('us-map');
+      const worldMapEl = document.getElementById('world-map');
+      
+      if (usMapEl) {
+        const usData = JSON.parse(usMapEl.getAttribute('data-locations') || '[]');
+        createMap('us-map', usData, true);
+      }
+      
+      if (worldMapEl) {
+        const worldData = JSON.parse(worldMapEl.getAttribute('data-locations') || '[]');
+        createMap('world-map', worldData, false);
+      }
+    }
+
+    // Load Leaflet and initialize maps
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', initMaps);
+      });
+    } else {
+      loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', initMaps);
+    }
+  })();
+</script>
+
+<style>
+  .maps-section {
+    margin-top: 3rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .maps-header-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 1.5rem;
+    transition: opacity 0.2s ease;
+  }
+
+  .maps-header-link:hover {
+    opacity: 0.8;
+  }
+
+  .maps-header-link:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  .maps-section-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .maps-section-title::after {
+    content: '→';
+    font-size: 1.25rem;
+    color: var(--accent-color);
+    transition: transform 0.2s ease;
+  }
+
+  .maps-header-link:hover .maps-section-title::after {
+    transform: translateX(4px);
+  }
+
+  .maps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+
+  .map-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .map-title {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+  }
+
+  .map {
+    z-index: 0; 
+    height: 300px;
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-secondary);
+  }
+
+  .maps-section:not(.compact) .map {
+    height: 500px;
+  }
+
+  :global(.leaflet-container) {
+    background: var(--bg-secondary);
+    font-family: inherit;
+  }
+
+  :global(.map-popup) {
+    padding: 0rem;
+  }
+
+  :global(.map-popup strong) {
+  font-size: 0.8rem;
+  font-weight: 10000;
+  color: #111827;
+  }
+
+  :global(.popup-date) {
+    display: block;
+    color: #4f5157ff;
+    font-size: 0.75rem;
+  }
+
+  :global(.popup-link) {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.75rem;
+    transition: color 0.2s ease;
+  }
+
+  :global(.popup-link:hover) {
+    color: var(--accent-hover);
+    text-decoration: underline;
+  }
+
+  :global(.leaflet-popup-content) {
+  max-width: 150px;
+  }
+
+  @media (max-width: 768px) {
+    .maps-container {
+      grid-template-columns: 1fr;
+    }
+
+    .map {
+      height: 250px;
+    }
+  }
+</style>
