@@ -123,20 +123,35 @@ const worldLocations = locations;
         }).addTo(map);
 
         mapLocations.forEach((location) => {
-          const popupContent = `
-            <div class="map-popup">
-              <strong>${location.asteroid}</strong><br>
-              <span class="popup-date">Date: ${location.date}</span><br>
-              <a 
+          const observersHTML = Array.isArray(location.observers) && location.observers.length
+          ? `<div class="popup-observers">
+              <span class="popup-label">Observers:</span>
+              <ul>
+                ${location.observers.map(o => `<li>${o}</li>`).join('')}
+              </ul>
+            </div>`
+          : '';
+
+        const linkHTML = location.link
+          ? `<a 
               href="${location.link}"
               class="popup-link"
               target="_blank"
               rel="noopener noreferrer"
-              >
+            >
               View Details →
-            </a>
-            </div>
-          `;
+            </a>`
+          : '';
+
+        const popupContent = `
+          <div class="map-popup">
+            <strong>${location.asteroid}</strong>
+            <span class="popup-date">Date: ${location.date}</span>
+            ${observersHTML}
+            ${linkHTML}
+          </div>
+        `;
+
 
           const marker = L.marker(
             [location.latitude, location.longitude],
@@ -281,6 +296,27 @@ const worldLocations = locations;
     color: #4f5157ff;
     font-size: 0.75rem;
   }
+
+  :global(.popup-observers) {
+    margin-top: 0.25rem;
+    font-size: 0.7rem;
+    color: #374151;
+  }
+
+  :global(.popup-observers ul) {
+    margin: 0.15rem 0 0 0.75rem;
+    padding: 0;
+  }
+
+  :global(.popup-observers li) {
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  :global(.popup-label) {
+    font-weight: 600;
+  }
+
 
   :global(.popup-link) {
     color: var(--accent-color);

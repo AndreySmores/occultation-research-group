@@ -1,28 +1,981 @@
 {
   "locations": [
     {
-      "latitude": 37.737238,
-      "longitude": -97.068056,
-      "asteroid": "59980 1999 SG6",
-      "date": "2025-08-13",
-      "link": "",
-      "observers": ["Phillip Oakey", "Keya Garg", "Andrey Moore", "Uday Kapoor"]
+      "latitude": 38.035627,
+      "longitude": -78.515480,
+      "asteroid": "Nightly Observations",
+      "date": "Nightly",
+      "observers": [
+        "The Occultation Group at UVA"
+      ],
+      "link": ""
     },
     {
-      "latitude": 38.035527,
-      "longitude": -78.516138,
-      "asteroid": "59980 1999 SG6",
-      "date": "2025-08-13",
-      "link": "",
-      "observers": ["The Occultation Group at UVA Garage"]
+      "latitude": 37.7749,
+      "longitude": -122.4194,
+      "asteroid": "(106) Dione",
+      "date": "2025-06-05",
+      "observers": [
+        "Andrey Moore"
+      ],
+      "link": ""
     },
     {
-      "latitude": 21.985129,
-      "longitude": -159.752149,
-      "asteroid": "50000 Quaoar",
-      "date": "2025-09-29",
-      "link": "",
-      "observers": ["Phillip Oakey, Keya Garg, Andrey Moore, John DiPasquale"]
+      "latitude": 21.984936,
+      "longitude": -159.752506,
+      "asteroid": "(50000) Quaoar",
+      "date": "2025-09-30",
+      "observers": [
+        "Andrey Moore",
+        "Phillip Oakey",
+        "Michael Skrutskie (prof.)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 22.009403,
+      "longitude": -159.769064,
+      "asteroid": "(50000) Quaoar",
+      "date": "2025-09-30",
+      "observers": [
+        "John DiPasquale",
+        "Keya Garg"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.378884,
+      "longitude": 20.805268,
+      "asteroid": "(59980) Moza",
+      "date": "2025-05-02",
+      "observers": [
+        "Geneva April (UWC)",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.393830,
+      "longitude": 20.661179,
+      "asteroid": "(59980) Moza",
+      "date": "2025-05-02",
+      "observers": [
+        "Lucky Makhathini (UWC)",
+        "Keya Garg"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.329327,
+      "longitude": 20.667189,
+      "asteroid": "(59980) Moza",
+      "date": "2025-05-02",
+      "observers": [
+        "Craig Mehl (UWC)",
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.351367,
+      "longitude": 20.670276,
+      "asteroid": "(59980) Moza",
+      "date": "2025-05-02",
+      "observers": [
+        "Elijah Akpoko (UWC)",
+        "Michael Skrutskie (prof.)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.408754,
+      "longitude": 20.658745,
+      "asteroid": "(59980) Moza",
+      "date": "2025-05-02",
+      "observers": [
+        "Altony Foote",
+        "Anne Verbiscer (prof.)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.408754,
+      "longitude": 20.658745,
+      "asteroid": "(59980) Moza",
+      "date": "2025-05-02",
+      "observers": [
+        "Altony Foote",
+        "Anne Verbiscer (prof.)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.731722,
+      "longitude": -80.659639,
+      "asteroid": "(59980) Moza",
+      "date": "2025-07-20",
+      "observers": [
+        "Altony Foote",
+        "Alex Taylor"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.730639,
+      "longitude": -80.612889,
+      "asteroid": "(59980) Moza",
+      "date": "2025-07-20",
+      "observers": [
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.667222,
+      "longitude": -80.575222,
+      "asteroid": "(59980) Moza",
+      "date": "2025-07-20",
+      "observers": [
+        "Hunter Oakey, Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.665944,
+      "longitude": -80.532778,
+      "asteroid": "(59980) Moza",
+      "date": "2025-07-20",
+      "observers": [
+        "Charles Dorsey, Kiara Ruffin"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.693278,
+      "longitude": -80.335306,
+      "asteroid": "(59980) Moza",
+      "date": "2025-07-20",
+      "observers": [
+        "Keya Garg",
+        "Nikita Joy"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.693278,
+      "longitude": -80.335306,
+      "asteroid": "(59980) Moza",
+      "date": "2025-07-20",
+      "observers": [
+        "Uday Kapoor"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.170167,
+      "longitude": -96.950333,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.114917,
+      "longitude": -96.948278,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.158583,
+      "longitude": -96.951389,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Keya Garg"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.079556,
+      "longitude": -96.950583,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Keya Garg"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.124306,
+      "longitude": -96.968972,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Uday Kapoor"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.071639,
+      "longitude": -96.945000,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Uday Kapoor"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.102361,
+      "longitude": -96.950528,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.090972,
+      "longitude": -96.950583,
+      "asteroid": "(59980) Moza",
+      "date": "2025-08-19",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 36.4038,
+      "longitude": -82.62643,
+      "asteroid": "(19521) Chaos",
+      "date": "2023-09-28",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.26379,
+      "longitude": -80.61963,
+      "asteroid": "(19521) Chaos",
+      "date": "2023-09-28",
+      "observers": [
+        "Keya Garg",
+        "Margaret Haun",
+        "Becky Williams"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.26379,
+      "longitude": -80.61963,
+      "asteroid": "(19521) Chaos",
+      "date": "2023-09-28",
+      "observers": [
+        "Claire Thilenius"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.26379,
+      "longitude": -80.61963,
+      "asteroid": "(19521) Chaos",
+      "date": "2023-09-28",
+      "observers": [
+        "Keya Garg",
+        "Margaret Haun",
+        "Becky Williams"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 37.966726,
+      "longitude": -78.650596,
+      "asteroid": "(38050) Bias, (81984) 2000 QV119",
+      "date": "2023-12-09",
+      "observers": [
+        "Jumi Hall",
+        "Nicholas Velasquez",
+        "Becky Williams"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 42.263724,
+      "longitude": -77.579934,
+      "asteroid": "(3548) Eurybates",
+      "date": "2024-03-25",
+      "observers": [
+        "Altony Foote",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 34.424722,
+      "longitude": -78.274444,
+      "asteroid": "(253) Mathilde",
+      "date": "2024-04-29",
+      "observers": [
+        "Andrey Moore",
+        "Eleanor Press",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 37.803810,
+      "longitude": -78.708520,
+      "asteroid": "(4337) Arecibo",
+      "date": "2024-10-16",
+      "observers": [
+        "John DiPasquale",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 37.938233,
+      "longitude": -78.613831,
+      "asteroid": "(4337) Arecibo",
+      "date": "2024-10-16",
+      "observers": [
+        "Andrey Moore",
+        "Caitlin O'Neill"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 45.163389,
+      "longitude": -84.196444,
+      "asteroid": "(4337) Arecibo",
+      "date": "2024-09-14",
+      "observers": [
+        "John DiPasquale",
+        "Philipp Heuser",
+        "Louise Murray",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 45.112722,
+      "longitude": -84.208444,
+      "asteroid": "(4337) Arecibo",
+      "date": "2024-09-14",
+      "observers": [
+        "Keya Garg",
+        "Andrey Moore",
+        "Winston Zhang"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 45.141604,
+      "longitude": -84.188379,
+      "asteroid": "(4337) Arecibo",
+      "date": "2024-09-14",
+      "observers": [
+        "Altony Foote",
+        "Rene O'Reilly",
+        "Liam Powell",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 40.517444,
+      "longitude": -80.419944,
+      "asteroid": "(3122) Florence",
+      "date": "2024-10-20",
+      "observers": [
+        "Altony Foote",
+        "Keya Garg",
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 40.523210,
+      "longitude": -80.423590,
+      "asteroid": "(3122) Florence",
+      "date": "2024-10-20",
+      "observers": [
+        "Rene O'Reilly",
+        "Phillip Oakey",
+        "Richard Townsley",
+        "Nathaneal Wattier"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 40.473510,
+      "longitude": -80.471600,
+      "asteroid": "(3122) Florence",
+      "date": "2024-10-20",
+      "observers": [
+        "Philipp Heuser",
+        "Jon Pinto",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.374610,
+      "longitude": -78.263290,
+      "asteroid": "(24446) 2000 PR25",
+      "date": "2024-11-16",
+      "observers": [
+        "John DiPasquale",
+        "Liam Powell"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.462180,
+      "longitude": -78.038113,
+      "asteroid": "(24446) 2000 PR25",
+      "date": "2024-11-16",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.390211,
+      "longitude": -78.247659,
+      "asteroid": "(24446) 2000 PR25",
+      "date": "2024-11-16",
+      "observers": [
+        "Keya Garg",
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.351222,
+      "longitude": -78.911917,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "Keya Garg",
+        "Diego Gomez",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.314500,
+      "longitude": -78.854222,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.374028,
+      "longitude": -79.778333,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "Mark Chernov",
+        "Tristan Howdyshell",
+        "Colin Surovell"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.341583,
+      "longitude": -80.237722,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "John DiPasquale",
+        "Casey York",
+        "James Beck"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.341583,
+      "longitude": -80.237722,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "James Beck",
+        "John DiPasquale",
+        "Casey York"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.269611,
+      "longitude": -79.924417,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "Kaushik Elavasaru",
+        "Andrey Moore",
+        "Andrés Salinas"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.158333,
+      "longitude": -79.660833,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "Georgia Clickner",
+        "Charles Dorsey",
+        "Nadara Hudson"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 34.999722,
+      "longitude": -79.692222,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "Lauren Daszynski",
+        "Altony Foote",
+        "Stephen Welch"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.045806,
+      "longitude": -79.713639,
+      "asteroid": "(623) Chimaera",
+      "date": "2025-10-21",
+      "observers": [
+        "Michael Skrutskie (prof.)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 37.855311,
+      "longitude": -78.725185,
+      "asteroid": "(888) Parysatis, (8294) Takayuki",
+      "date": "2024-12-10",
+      "observers": [
+        "Muhammad Mousa",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.152223,
+      "longitude": -78.367555,
+      "asteroid": "(888) Parysatis, (8294) Takayuki",
+      "date": "2024-12-10",
+      "observers": [
+        "Philipp Heuser",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 36.579160,
+      "longitude": -79.717340,
+      "asteroid": "(3200) Phaethon",
+      "date": "2024-12-22",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.766999,
+      "longitude": -77.025848,
+      "asteroid": "(238) Hypatia",
+      "date": "2025-01-17",
+      "observers": [
+        "Altony Foote",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.873953,
+      "longitude": -80.445978,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-01-30",
+      "observers": [
+        "Altony Foote",
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.383389,
+      "longitude": -82.820361,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-01-30",
+      "observers": [
+        "Charles Dorsey",
+        "Keya Garg",
+        "Nadara Hudson"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.569483,
+      "longitude": -83.431086,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-01-30",
+      "observers": [
+        "Kaila Kennedy",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.890806,
+      "longitude": -79.850372,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-01-30",
+      "observers": [
+        "John DiPasquale",
+        "Eleanor Press"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.890806,
+      "longitude": -79.850372,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-01-30",
+      "observers": [
+        "John DiPasquale",
+        "Eleanor Press"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 41.229722,
+      "longitude": -76.325556,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-03-18",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 41.409472,
+      "longitude": -77.227639,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-03-18",
+      "observers": [
+        "Nadara Hudson",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 41.149753,
+      "longitude": -76.308942,
+      "asteroid": "(468861) 2013 LU28",
+      "date": "2025-03-18",
+      "observers": [
+        "Keya Garg",
+        "Brooklyn McLaughlin"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 37.314286,
+      "longitude": -80.582514,
+      "asteroid": "(2241) Alcathous",
+      "date": "2025-09-13",
+      "observers": [
+        "Phillip Oakey",
+        "Evan Song"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.311556,
+      "longitude": -78.251222,
+      "asteroid": "(2241) Alcathous",
+      "date": "2025-09-13",
+      "observers": [
+        "Andrey Moore",
+        "Eleanor Press",
+        "Matthew Walls"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.311556,
+      "longitude": -80.582514,
+      "asteroid": "(2241) Alcathous",
+      "date": "2025-09-13",
+      "observers": [
+        "Andrey Moore",
+        "Eleanor Press",
+        "Matthew Walls"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.530000,
+      "longitude": -78.259124,
+      "asteroid": "(2241) Alcathous",
+      "date": "2025-09-13",
+      "observers": [
+        "John DiPasquale",
+        "Siwon Park",
+        "Andrés Salinas"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.530000,
+      "longitude": -78.259124,
+      "asteroid": "(2241) Alcathous",
+      "date": "2025-09-13",
+      "observers": [
+        "John DiPasquale",
+        "Siwon Park",
+        "Andrés Salinas"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.167240,
+      "longitude": -79.125816,
+      "asteroid": "(1867) Deiphobos",
+      "date": "2025-10-24",
+      "observers": [
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.040853,
+      "longitude": -79.116446,
+      "asteroid": "(1867) Deiphobos",
+      "date": "2025-10-24",
+      "observers": [
+        "Mark Chernov"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 42.151880,
+      "longitude": -77.781550,
+      "asteroid": "(214508) 2006 AF84",
+      "date": "2024-10-07",
+      "observers": [
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.380250,
+      "longitude": -78.023250,
+      "asteroid": "(214508) 2006 AF84",
+      "date": "2024-10-07",
+      "observers": [
+        "Andrey Moore",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.703817,
+      "longitude": -78.074706,
+      "asteroid": "(214508) 2006 AF84",
+      "date": "2024-10-07",
+      "observers": [
+        "Altony Foote",
+        "Rene O'Reilly"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 15.070105,
+      "longitude": -15.707357,
+      "asteroid": "(21900) Orus",
+      "date": "2021-10-16",
+      "observers": [
+        "Michael Skrutskie (prof.)"
+      ],
+      "link": ""
+    },
+        {
+      "latitude": -14.477554,
+      "longitude": 132.269826,
+      "asteroid": "(21900) Pluto",
+      "date": "2022-02-01",
+      "observers": [
+        "Liam Walters",
+        "Becky Williams"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 31.337956,
+      "longitude": -102.864340,
+      "asteroid": "(617) Patroclus + Menoetius",
+      "date": "2024-08-12",
+      "observers": [
+        "Michael Barnett (volunteer)",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.3889350,
+      "longitude": -106.0594264,
+      "asteroid": "(617) Patroclus + Menoetius",
+      "date": "2024-08-12",
+      "observers": [
+        "Brian Keeney (SwRI)",
+        "Eleanor Press"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 32.236972,
+      "longitude": -107.226694,
+      "asteroid": "(617) Patroclus + Menoetius",
+      "date": "2024-08-12",
+      "observers": [
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.189494,
+      "longitude": -101.791477,
+      "asteroid": "[Training] - (617) Patroclus + Menoetius",
+      "date": "2024-08-09",
+      "observers": [
+        "Eleanor Press",
+        "Phillip Oakey",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 33.320777,
+      "longitude": -104.328624,
+      "asteroid": "[Training] - (617) Patroclus + Menoetius",
+      "date": "2024-08-10",
+      "observers": [
+        "Eleanor Press",
+        "Phillip Oakey",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 33.512255,
+      "longitude": -101.826378,
+      "asteroid": "[Training] - (617) Patroclus + Menoetius",
+      "date": "2024-08-11",
+      "observers": [
+        "Eleanor Press",
+        "Phillip Oakey",
+        "Nicholas Velasquez"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 40.207484,
+      "longitude": -104.975594,
+      "asteroid": "[Training] - (15094) Polymele",
+      "date": "2023-02-02",
+      "observers": [
+        "Becky Williams",
+        "Samuel Crowe",
+        "Alexander Templeton",
+        "Claire Thilenius",
+        "Cameren Whitaker",
+        "Cass Morel",
+        "Louis Seyfritz",
+        "Muhammad Mousa",
+        "Xena Fortune-Bashee",
+        "Zaina Tarafder",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 38.835109,
+      "longitude": -97.588485,
+      "asteroid": "(15094) Polymele",
+      "date": "2023-02-04",
+      "observers": [
+        "Raven Chowdhury (CU Boulder)",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 40.207484,
+      "longitude": -104.975594,
+      "asteroid": "[Training] - (15094) Polymele",
+      "date": "2023-02-02",
+      "observers": [
+        "Becky Williams",
+        "Samuel Crowe",
+        "Alexander Templeton",
+        "Claire Thilenius",
+        "Cameren Whitaker",
+        "Cass Morel",
+        "Louis Seyfritz",
+        "Muhammad Mousa",
+        "Xena Fortune-Bashee",
+        "Zaina Tarafder",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 40.337664,
+      "longitude": -97.588485,
+      "asteroid": "P3M1 (Total Solar Eclipse)",
+      "date": "2024-04-08",
+      "observers": [
+        "Nicholas Velasquez",
+        "Eleanor Press",
+        "Claire Thilenius",
+        "Phillip Oakey",
+        "Cass Morel",
+        "Muhammad Mousa",
+        "Cameren Whitaker",
+        "Samuel Crowe",
+        "Becky Williams",
+        "Margaret Haun",
+        "Zaina Tarafder",
+        "Xena Fortune-Bashee",
+        "Alexander Templeton"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 29.633875,
+      "longitude": -114.595563,
+      "asteroid": "(15094) Polymele",
+      "date": "2024-02-26",
+      "observers": [
+        "Alexander Templeton"
+      ],
+      "link": ""
     }
   ]
 }
