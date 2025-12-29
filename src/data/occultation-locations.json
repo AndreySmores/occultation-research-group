@@ -1,26 +1,6 @@
 {
   "locations": [
     {
-      "latitude": 38.035627,
-      "longitude": -78.515480,
-      "asteroid": "Nightly Observations",
-      "date": "Nightly",
-      "observers": [
-        "The Occultation Group at UVA"
-      ],
-      "link": ""
-    },
-    {
-      "latitude": 37.7749,
-      "longitude": -122.4194,
-      "asteroid": "(106) Dione",
-      "date": "2025-06-05",
-      "observers": [
-        "Andrey Moore"
-      ],
-      "link": ""
-    },
-    {
       "latitude": 21.984936,
       "longitude": -159.752506,
       "asteroid": "(50000) Quaoar",
@@ -110,6 +90,25 @@
       "link": ""
     },
     {
+      "latitude": 31.924619,
+      "longitude": -80.659639,
+      "asteroid": "[Training] - (59980) Moza",
+      "date": "2025-07-19",
+      "observers": [
+        "Charles Dorsey",
+        "Altony Foote",
+        "Keya Garg",
+        "Nikita Joy",
+        "Uday Kapoor",
+        "Andrey Moore",
+        "Hunter Oakey",
+        "Phillip Oakey",
+        "Kiara Ruffin",
+        "Alex Taylor"
+      ],
+      "link": ""
+    },
+    {
       "latitude": 32.731722,
       "longitude": -80.659639,
       "asteroid": "(59980) Moza",
@@ -136,7 +135,8 @@
       "asteroid": "(59980) Moza",
       "date": "2025-07-20",
       "observers": [
-        "Hunter Oakey, Phillip Oakey"
+        "Hunter Oakey",
+        "Phillip Oakey"
       ],
       "link": ""
     },
@@ -146,7 +146,8 @@
       "asteroid": "(59980) Moza",
       "date": "2025-07-20",
       "observers": [
-        "Charles Dorsey, Kiara Ruffin"
+        "Charles Dorsey",
+        "Kiara Ruffin"
       ],
       "link": ""
     },
@@ -618,6 +619,14 @@
       "link": ""
     },
     {
+      "latitude": 38.035645,
+      "longitude": -78.515227,
+      "asteroid": "UVA Nightly Operations",
+      "date": "",
+      "observers": [],
+      "link": ""
+    },
+    {
       "latitude": 38.383389,
       "longitude": -82.820361,
       "asteroid": "(468861) 2013 LU28",
@@ -774,8 +783,8 @@
       "link": ""
     },
     {
-      "latitude": 42.151880,
-      "longitude": -77.781550,
+      "latitude": 38.806616,
+      "longitude": -77.765771,
       "asteroid": "(214508) 2006 AF84",
       "date": "2024-10-07",
       "observers": [
@@ -815,7 +824,7 @@
       ],
       "link": ""
     },
-        {
+    {
       "latitude": -14.477554,
       "longitude": 132.269826,
       "asteroid": "(21900) Pluto",
@@ -947,7 +956,7 @@
     },
     {
       "latitude": 40.337664,
-      "longitude": -97.588485,
+      "longitude": -83.640823,
       "asteroid": "P3M1 (Total Solar Eclipse)",
       "date": "2024-04-08",
       "observers": [
@@ -975,6 +984,30 @@
       "observers": [
         "Alexander Templeton"
       ],
+      "link": ""
+    },
+    {
+      "latitude": 39.527718,
+      "longitude": -79.956509,
+      "asteroid": "(19188) Dittebesard",
+      "date": "2024-07-22",
+      "observers": ["Andrey Moore"],
+      "link": ""
+    },
+    {
+      "latitude": 39.700682,
+      "longitude": -79.828296,
+      "asteroid": "(78159) 2002 NA28",
+      "date": "2024-07-23",
+      "observers": ["Andrey Moore"],
+      "link": ""
+    },
+    {
+      "latitude": 39.702388,
+      "longitude": -80.027364,
+      "asteroid": "(106) Dione",
+      "date": "2024-06-05",
+      "observers": ["Andrey Moore"],
       "link": ""
     }
   ]
