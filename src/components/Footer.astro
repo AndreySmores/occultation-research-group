@@ -1,0 +1,40 @@
+---
+const supporters = [
+  { src: '/images/planetary_society.png', alt: 'The Planetary Society' },
+  { src: '/images/jeff_trust.png', alt: 'Jefferson Trust' },
+  { src: '/images/SAF.png', alt: 'UVA Student Activities Fund' },
+  { src: '/images/ParentsFund.png', alt: 'UVA Parents Fund' },
+];
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-left">
+        <p class="footer-copyright">&copy; 2026 The Occultation Group at UVA. All rights reserved.</p>
+      </div>
+      <div class="footer-supporters">
+        <span class="footer-supporters-label">Supported by</span>
+        <div class="footer-supporters-logos">
+          {supporters.map((s) => (
+            <img
+              src={s.src}
+              alt={s.alt}
+              class="footer-supporter-logo"
+              width="120"
+              height="48"
+              loading="lazy"
+            />
+          ))}
+        </div>
+      </div>
+      <div class="footer-right">
+        <ul class="footer-links">
+          <li><a href="mailto:pvz5hs@virginia.edu">Contact</a></li>
+          <li><a href="https://github.com/occultation-research-group" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

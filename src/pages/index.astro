@@ -4,6 +4,8 @@ import Results from '../components/Results.astro';
 import Publications from '../components/Publications.astro';
 import NewsList from '../components/NewsList.astro';
 import OccultationMaps from '../components/OccultationMaps.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 ---
 
@@ -35,19 +37,7 @@ import '../styles/global.css';
   <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <header class="header" role="banner">
-      <div class="container">
-        <div class="header-content">
-          <h1 class="site-title">The Occultation Group at UVA</h1>
-          <nav class="nav" role="navigation" aria-label="Main navigation">
-            <a href="#main-content">Home</a>
-            <a href="results">Results</a>
-            <a href="/news">News</a>
-            <a href="/about">About</a>
-          </nav>
-        </div>
-      </div>
-    </header>
+    <Header currentPage="home" />
 
     <main id="main-content" class="main" role="main">
       <div class="container">
@@ -73,18 +63,7 @@ import '../styles/global.css';
       </div>
     </main>
 
-    <footer class="footer" role="contentinfo">
-      <div class="container">
-        <div class="footer-content">
-          <p>&copy; 2025 The Occultation Group at UVA. All rights reserved.</p>
-          <ul class="footer-links">
-            <li><a href="mailto:pvz5hs@virginia.edu">Contact</a></li>
-            <li><a href="https://github.com/occultation-research-group" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="/rss.xml">RSS</a></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+    <Footer />
 
     <!-- Analytics placeholder - uncomment and configure as needed -->
     <!-- 
