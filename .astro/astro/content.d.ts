@@ -157,42 +157,49 @@ declare module 'astro:content' {
   slug: "20220327_15904_polymele";
   body: string;
   collection: "news";
-  data: InferEntrySchema<"news">
+  data: any
 } & { render(): Render[".mdx"] };
 "20230601_Pluto.mdx": {
 	id: "20230601_Pluto.mdx";
   slug: "20230601_pluto";
   body: string;
   collection: "news";
-  data: InferEntrySchema<"news">
+  data: any
 } & { render(): Render[".mdx"] };
 "20250819_59980_1999_SG6.mdx": {
 	id: "20250819_59980_1999_SG6.mdx";
   slug: "20250819_59980_1999_sg6";
   body: string;
   collection: "news";
-  data: InferEntrySchema<"news">
+  data: any
 } & { render(): Render[".mdx"] };
 "20250915_uva_students_travel_the_world_kelly.md": {
 	id: "20250915_uva_students_travel_the_world_kelly.md";
   slug: "20250915_uva_students_travel_the_world_kelly";
   body: string;
   collection: "news";
-  data: InferEntrySchema<"news">
+  data: any
 } & { render(): Render[".md"] };
 "20250930_50000_Quaoar.mdx": {
 	id: "20250930_50000_Quaoar.mdx";
   slug: "20250930_50000_quaoar";
   body: string;
   collection: "news";
-  data: InferEntrySchema<"news">
+  data: any
+} & { render(): Render[".mdx"] };
+"20251021_623_Chimaera copy.mdx": {
+	id: "20251021_623_Chimaera copy.mdx";
+  slug: "20251021_623_chimaera-copy";
+  body: string;
+  collection: "news";
+  data: any
 } & { render(): Render[".mdx"] };
 "20251021_623_Chimaera.mdx": {
 	id: "20251021_623_Chimaera.mdx";
   slug: "20251021_623_chimaera";
   body: string;
   collection: "news";
-  data: InferEntrySchema<"news">
+  data: any
 } & { render(): Render[".mdx"] };
 };
 
@@ -204,5 +211,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../../src/content/config.js");
+	export type ContentConfig = never;
 }
