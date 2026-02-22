@@ -1,0 +1,96 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ImageWithCaption from '../components/ImageWithCaption.astro';
+import '../styles/global.css';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Get Involved with the Occultation Research Group - Join our team, participate in observations, and contribute to scientific research" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Get Involved - The Occultation Group at UVA</title>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <Header currentPage="get-involved" />
+
+    <main id="main-content" class="main" role="main">
+      <div class="container">
+        <article style="max-width: 800px; margin: 0 auto;">
+          <header>
+            <h1>Get Involved</h1>
+          </header>
+          
+          <ImageWithCaption 
+            src="/images/dubai_telescope_fixing_image.jpeg"
+            alt="Group members working together to set up a telescope"
+            placement="full"
+            size="large"
+          />
+          
+          <section>
+            <h2>Join Our Research Group</h2>
+            <p>
+              The Occultation Research Group welcomes students, researchers, and astronomy enthusiasts who are interested 
+              in contributing to cutting-edge scientific research. Whether you're a UVA student looking to get involved 
+              in undergraduate research, or an external collaborator interested in our work, there are many ways to participate.
+            </p>
+          </section>
+
+          <section>
+            <h2>For UVA Students</h2>
+            <p>
+              If you're a student at the University of Virginia and interested in joining our group:
+            </p>
+            <ul>
+              <li>
+                <strong>Contact the Executive Team:</strong> For questions about our research or how to get involved, 
+                contact any member of the <a href="/#people">executive team</a>, or our president Teddy Oakey, at 
+                <a href="mailto:rxr4nd@virginia.edu">rxr4nd@virginia.edu</a>.
+              </li>
+              <li>
+                <strong>Attend Our Meetings:</strong> To find out when and where we hold our nightly observations, 
+                learn about upcoming opportunities, and join our Groupme, sign up for our 
+                <a href="https://lists.virginia.edu/sympa/info/occultation" target="_blank" rel="noopener noreferrer">listserv</a>.
+              </li>
+              <li>
+                <strong>No Prior Experience Required:</strong> All training is provided for students by students. 
+                We'll teach you how to operate telescopes, analyze data, and contribute to astronomical publications.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h2>For External Collaborators</h2>
+            <p>
+              We collaborate with amateur astronomers, professional observatories, and international research groups:
+            </p>
+            <ul>
+              <li>
+                <strong>International Occultation Timing Association (IOTA):</strong> 
+                <a href="https://www.occultations.org/" target="_blank" rel="noopener noreferrer">Visit IOTA</a> 
+                to learn about occultation observations and join the global network of observers.
+              </li>
+              <li>
+                <strong>Coordinate Observations:</strong> If you're planning to observe an occultation event, 
+                <a href="/#people">contact us</a> to coordinate observations and share data.
+              </li>
+              <li>
+                <strong>Data Sharing:</strong> We welcome collaboration on data analysis and publication. 
+                Reach out to discuss potential partnerships.
+              </li>
+            </ul>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <Footer />
+  </body>
+</html>

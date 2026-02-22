@@ -1,6 +1,6 @@
 ---
 interface Props {
-  currentPage?: 'home' | 'results' | 'news' | 'about';
+  currentPage?: 'home' | 'results' | 'news' | 'about' | 'get-involved';
 }
 const { currentPage } = Astro.props;
 ---
@@ -16,6 +16,7 @@ const { currentPage } = Astro.props;
         <a href="/results" aria-current={currentPage === 'results' ? 'page' : undefined}>Results</a>
         <a href="/news" aria-current={currentPage === 'news' ? 'page' : undefined}>News</a>
         <a href="/about" aria-current={currentPage === 'about' ? 'page' : undefined}>About</a>
+        <a href="/get-involved" aria-current={currentPage === 'get-involved' ? 'page' : undefined}>Get Involved</a>
       </nav>
     </div>
   </div>
