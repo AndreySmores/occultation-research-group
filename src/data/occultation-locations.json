@@ -1,6 +1,100 @@
 {
   "locations": [
     {
+      "latitude": 24.958929,
+      "longitude": 55.812372,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        " Hind Alqaydi (UAESA)",
+        "Nourah Alqaydi (UAESA)",
+        "Altony Foote"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 24.9384260,
+      "longitude": 55.7458490,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        "Professor Mashhoor Alwardat (UAESA)",
+        "Keya Garg",
+        "Jowara Jafar (UAESA)",
+        "Suad Yousuf (UAESA)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 24.971625,
+      "longitude": 55.370175,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        "Andrey Moore",
+        "Ahmed Sayed (UAESA)",
+        "Rana Wael (UAESA)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 24.835037,
+      "longitude": 55.616864,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        "Phillip Oakey",
+        "Ryan Parsons (UAESA)",
+        "Yasmine Parsons (UAESA)"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 25.079444,
+      "longitude": 55.951667,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        "Georgia Clickner",
+        "Vasilisa Sergienko"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 25.0721002,
+      "longitude": 55.8476576,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        "Lauren Daszynski",
+        "Casey York"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 24.68152,
+      "longitude": 55.58548,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        "John DiPasquale",
+        "Matthew Walls"
+      ],
+      "link": ""
+    },
+     {
+      "latitude": 24.67300,
+      "longitude": 55.74550,
+      "asteroid": "20260113 (269) Justitia",
+      "date": "2026-01-13",
+      "observers": [
+        "Mark Chernov",
+        "Charles Dorsey",
+        "Irene Maldia"
+      ],
+      "link": ""
+    },
+    {
       "latitude": 21.984936,
       "longitude": -159.752506,
       "asteroid": "(50000) Quaoar",
