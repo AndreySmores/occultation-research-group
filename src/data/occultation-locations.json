@@ -1,6 +1,50 @@
 {
   "locations": [
     {
+      "latitude": -32.342509,
+      "longitude": 148.96645, 
+      "asteroid": "P5M44 Kallichore",
+      "date": "2026-03-18",
+      "observers": [
+        "Nadara Hudson",
+        "Colin Surovell"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.413792, 
+      "longitude": 148.95735, 
+      "asteroid": "P5M44 Kallichore",
+      "date": "2026-03-18",
+      "observers": [
+        "Brigh Chawner",
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    { 
+      "latitude": -32.43005001,
+      "longitude": 148.8574472, 
+      "asteroid": "P5M44 Kallichore",
+      "date": "2026-03-18",
+      "observers": [
+        "Georgia Clickner",
+        "Mason Strak"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": -32.586474,
+      "longitude": 148.948648,  
+      "asteroid": "P5M44 Kallichore",
+      "date": "2026-03-18",
+      "observers": [
+        "Diego Gomez",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
       "latitude": 24.958929,
       "longitude": 55.812372,
       "asteroid": "20260113 (269) Justitia",
