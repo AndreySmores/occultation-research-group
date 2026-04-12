@@ -1,7 +1,6 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import ImageWithCaption from '../components/ImageWithCaption.astro';
 import '../styles/global.css';
 ---
 
@@ -20,19 +19,25 @@ import '../styles/global.css';
     
     <Header currentPage="get-involved" />
 
+    <div class="get-involved-banner">
+      <img
+        src="/images/telescope_training_image.JPG"
+        alt="Occultation Group members assembling a telescope for observations"
+        class="get-involved-banner__image"
+        width="1600"
+        height="500"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+
     <main id="main-content" class="main" role="main">
       <div class="container">
         <article style="max-width: 800px; margin: 0 auto;">
           <header>
             <h1>Get Involved</h1>
           </header>
-          
-          <ImageWithCaption 
-            src="/images/dubai_telescope_fixing_image.jpeg"
-            alt="Group members working together to set up a telescope"
-            placement="full"
-            size="large"
-          />
           
           <section>
             <h2>Join Our Research Group</h2>
@@ -94,3 +99,31 @@ import '../styles/global.css';
     <Footer />
   </body>
 </html>
+
+<style>
+  .get-involved-banner {
+    width: 100%;
+    max-height: min(62vh, 640px);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+  }
+
+  .get-involved-banner__image {
+    display: block;
+    width: 100%;
+    height: min(62vh, 640px);
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media (max-width: 768px) {
+    .get-involved-banner {
+      max-height: min(48vh, 420px);
+    }
+
+    .get-involved-banner__image {
+      height: min(48vh, 420px);
+    }
+  }
+</style>

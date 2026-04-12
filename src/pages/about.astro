@@ -19,6 +19,19 @@ import '../styles/global.css';
     
     <Header currentPage="about" />
 
+    <div class="about-banner">
+      <img
+        src="/images/diego_telescope_image.jpg"
+        alt="Diego with a telescope during an occultation observation"
+        class="about-banner__image"
+        width="1600"
+        height="500"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+
     <main id="main-content" class="main" role="main">
       <div class="container">
         <article style="max-width: 800px; margin: 0 auto;">
@@ -91,3 +104,31 @@ import '../styles/global.css';
     <Footer />
   </body>
 </html>
+
+<style>
+  .about-banner {
+    width: 100%;
+    max-height: min(62vh, 640px);
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+  }
+
+  .about-banner__image {
+    display: block;
+    width: 100%;
+    height: min(52vh, 520px);
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media (max-width: 768px) {
+    .about-banner {
+      max-height: min(48vh, 420px);
+    }
+
+    .about-banner__image {
+      height: min(48vh, 420px);
+    }
+  }
+</style>
