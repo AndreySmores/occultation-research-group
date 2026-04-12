@@ -3,6 +3,19 @@ import { getCollection } from 'astro:content';
 
 const newsPosts = await getCollection('news');
 const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+type ThumbnailPosition = 'top' | 'center' | 'bottom';
+
+function thumbnailCropStyle(pos: ThumbnailPosition | undefined) {
+  if (!pos) return undefined;
+  const objectPosition: Record<ThumbnailPosition, string> = {
+    top: 'center top',
+    center: 'center center',
+    /** Lower-middle of frame (not flush to bottom). */
+    bottom: 'center 68%',
+  };
+  return { objectPosition: objectPosition[pos] };
+}
 ---
 
 <div class="news-section">
@@ -60,6 +73,7 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
                     src={post.data.images[0]} 
                     alt={`Preview image for ${post.data.title}`}
                     loading="lazy"
+                    style={thumbnailCropStyle(post.data.thumbnailPosition)}
                   />
                 </div>
               )}
@@ -70,6 +84,7 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
                     src={post.data.image} 
                     alt={`Image for ${post.data.title}`}
                     loading="lazy"
+                    style={thumbnailCropStyle(post.data.thumbnailPosition)}
                   />
                 </div>
               )}
@@ -259,7 +274,14 @@ const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date
   width: 100%;
 }
 
-.news-image img,
+.news-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
 .news-video video,
 .news-youtube iframe {
   width: 100%;

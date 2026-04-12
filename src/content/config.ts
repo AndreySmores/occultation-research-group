@@ -12,6 +12,8 @@ const news = defineCollection({
     video: z.string().optional(),
     youtube: z.string().optional(),
     summary: z.string().optional(),
+    /** Crop focus for list thumbnails (`bottom` ≈ lower-middle). Default is top when unset. */
+    thumbnailPosition: z.enum(['top', 'center', 'bottom']).optional(),
     tags: z.array(z.string()).optional(),
     relatedLinks: z.array(z.object({
       title: z.string(),

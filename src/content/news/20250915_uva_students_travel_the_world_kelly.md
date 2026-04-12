@@ -7,6 +7,7 @@ source: "UVA Today"
 isExternal: true 
 images: 
   - "/images/uva_today_cover.jpg"
+thumbnailPosition: bottom
 summary: "Matt Kelly writes about the Occultation Group and our mission."
 tags: ['External Article']
 ---
