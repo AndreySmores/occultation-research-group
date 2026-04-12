@@ -194,9 +194,9 @@ declare module 'astro:content' {
   collection: "news";
   data: InferEntrySchema<"news">
 } & { render(): Render[".mdx"] };
-"20251021_623_Justitia.mdx": {
-	id: "20251021_623_Justitia.mdx";
-  slug: "20251021_623_justitia";
+"20260113_269_Justitia.mdx": {
+	id: "20260113_269_Justitia.mdx";
+  slug: "20260113_269_justitia";
   body: string;
   collection: "news";
   data: InferEntrySchema<"news">
