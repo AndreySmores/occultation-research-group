@@ -1,5 +1,92 @@
 {
   "locations": [
+  {
+      "latitude": 34.969162,
+      "longitude": -86.724703,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "Nadara Hudson",
+        "Preston Le",
+        "Phillip Oakey"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 34.91729,
+      "longitude": -86.08756,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "Cameron Avery",
+        "Brigh Chawner"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 34.92859722,
+      "longitude": -86.96474167,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "Georgia Clickner"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 34.852578,
+      "longitude": -86.221861,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "Andrey Moore"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.355500,
+      "longitude": -86.586416,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "Keanan Berry",
+        "Iris Chen"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 34.904497,
+      "longitude": -86.865258,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "Keya Garg",
+        "Jordan McClinton",
+        "Stephen Welch"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.42665,
+      "longitude": -86.71182,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "John DiPasquale"
+      ],
+      "link": ""
+    },
+    {
+      "latitude": 35.432096,
+      "longitude": -86.800095,
+      "asteroid": "(269) Justitia",
+      "date": "2026-04-11",
+      "observers": [
+        "Colin Surovell",
+        "Mason Strak"
+      ],
+      "link": ""
+    },
     {
       "latitude": -32.342509,
       "longitude": 148.96645, 
