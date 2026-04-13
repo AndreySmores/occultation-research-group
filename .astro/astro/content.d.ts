@@ -201,6 +201,13 @@ declare module 'astro:content' {
   collection: "news";
   data: InferEntrySchema<"news">
 } & { render(): Render[".mdx"] };
+"20260318_Kallichore.mdx": {
+	id: "20260318_Kallichore.mdx";
+  slug: "20260318_kallichore";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".mdx"] };
 };
 
 	};
