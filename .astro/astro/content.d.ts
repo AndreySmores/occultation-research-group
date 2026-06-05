@@ -208,6 +208,13 @@ declare module 'astro:content' {
   collection: "news";
   data: InferEntrySchema<"news">
 } & { render(): Render[".mdx"] };
+"20260604_VAS_presentation.mdx": {
+	id: "20260604_VAS_presentation.mdx";
+  slug: "20260604_vas_presentation";
+  body: string;
+  collection: "news";
+  data: InferEntrySchema<"news">
+} & { render(): Render[".mdx"] };
 };
 
 	};
