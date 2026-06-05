@@ -7,7 +7,11 @@ const latestPosts = sortedPosts.slice(0, 4); // change 4 to however many article
 
 type ThumbnailPosition = 'top' | 'center' | 'bottom';
 
-function thumbnailCropStyle(pos: ThumbnailPosition | undefined) {
+function thumbnailCropStyle(pos: ThumbnailPosition | undefined, customObjectPosition?: string) {
+  if (customObjectPosition) {
+    return { objectPosition: customObjectPosition };
+  }
+
   if (!pos) return undefined;
   const objectPosition: Record<ThumbnailPosition, string> = {
     top: 'center top',
@@ -74,7 +78,7 @@ function thumbnailCropStyle(pos: ThumbnailPosition | undefined) {
                     src={post.data.images[0]} 
                     alt={`Preview image for ${post.data.title}`}
                     loading="lazy"
-                    style={thumbnailCropStyle(post.data.thumbnailPosition)}
+                    style={thumbnailCropStyle(post.data.thumbnailPosition, post.data.thumbnailObjectPosition)}
                   />
                 </div>
               )}
@@ -85,7 +89,7 @@ function thumbnailCropStyle(pos: ThumbnailPosition | undefined) {
                     src={post.data.image} 
                     alt={`Image for ${post.data.title}`}
                     loading="lazy"
-                    style={thumbnailCropStyle(post.data.thumbnailPosition)}
+                    style={thumbnailCropStyle(post.data.thumbnailPosition, post.data.thumbnailObjectPosition)}
                   />
                 </div>
               )}

@@ -14,6 +14,8 @@ const news = defineCollection({
     summary: z.string().optional(),
     /** Crop focus for list thumbnails (`bottom` ≈ lower-middle). Default is top when unset. */
     thumbnailPosition: z.enum(['top', 'center', 'bottom']).optional(),
+    /** Explicit CSS object-position for thumbnail crops, e.g. "center 90%". */
+    thumbnailObjectPosition: z.string().optional(),
     tags: z.array(z.string()).optional(),
     relatedLinks: z.array(z.object({
       title: z.string(),
