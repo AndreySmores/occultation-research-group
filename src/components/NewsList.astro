@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 
 const newsPosts = await getCollection('news');
 const sortedPosts = newsPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const latestPosts = sortedPosts.slice(0, 4); // change 4 to however many articles you want
 
 type ThumbnailPosition = 'top' | 'center' | 'bottom';
 
@@ -22,8 +23,8 @@ function thumbnailCropStyle(pos: ThumbnailPosition | undefined) {
   <h2 class="news-header-fixed">Latest News</h2>
 
   <div class="news-list-scrollable">
-    {sortedPosts.length > 0 ? (
-      sortedPosts.map((post) => {
+    {latestPosts.length > 0 ? (
+      latestPosts.map((post) => {
         const isExternal = post.data.externalUrl || post.data.isExternal;
         const articleUrl = isExternal ? post.data.externalUrl! : `/news/${post.slug}/`;
         const linkTarget = isExternal ? '_blank' : '_self';
